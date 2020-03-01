@@ -51,3 +51,8 @@ INSERT IGNORE INTO visits VALUES (1, 7, '2010-03-04', 'rabies shot');
 INSERT IGNORE INTO visits VALUES (2, 8, '2011-03-04', 'rabies shot');
 INSERT IGNORE INTO visits VALUES (3, 8, '2009-06-04', 'neutered');
 INSERT IGNORE INTO visits VALUES (4, 7, '2008-09-04', 'spayed');
+
+INSERT IGNORE INTO hotels VALUES (1, 7, '2020-04-01', '2020-04-07', 'hotel1');
+INSERT IGNORE INTO hotels VALUES (2, 8, '2020-03-05', '2020-04-01', 'hotel2');
+INSERT IGNORE INTO hotels VALUES (3, 8, '2020-07-10', '2020-07-15', 'hotel3');
+INSERT IGNORE INTO hotels VALUES (4, 7, '2020-03-02', '2020-03-08', 'hotel4');
