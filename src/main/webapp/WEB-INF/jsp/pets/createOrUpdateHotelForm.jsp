@@ -29,9 +29,9 @@
 
         <form:form modelAttribute="hotel" class="form-horizontal">
             <div class="form-group has-feedback">
+               	<petclinic:inputField label="Name" name="name"/>
                 <petclinic:inputField label="Start Date" name="startDate"/>
                 <petclinic:inputField label="Finish Date" name="finishDate"/>
-                <petclinic:inputField label="Details" name="details"/>
             </div>
 
             <div class="form-group">
@@ -46,16 +46,16 @@
         <b>Previous Hotel Books</b>
         <table class="table table-striped">
             <tr>
+            	<th>Name</th>
                 <th>Start Date</th>
                 <th>Finish Date</th>
-                <th>Details</th>
             </tr>
-            <c:forEach var="visit" items="${hotel.pet.hotels}">
+            <c:forEach var="hotel" items="${hotel.pet.hotels}">
                 <c:if test="${!hotel['new']}">
                     <tr>
+                        <td><c:out value="${hotel.name}"/></td>
                         <td><petclinic:localDate date="${hotel.startDate}" pattern="yyyy/MM/dd"/></td>
                         <td><petclinic:localDate date="${hotel.finishDate}" pattern="yyyy/MM/dd"/></td>
-                        <td><c:out value="${hotel.details}"/></td>
                     </tr>
                 </c:if>
             </c:forEach>

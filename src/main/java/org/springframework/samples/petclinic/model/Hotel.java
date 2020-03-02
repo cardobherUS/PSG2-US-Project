@@ -3,20 +3,20 @@ package org.springframework.samples.petclinic.model;
 import java.time.LocalDate;
 
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.FutureOrPresent;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "hotels")
-public class Hotel extends BaseEntity{
+public class Hotel extends NamedEntity{
 
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	@Column(name = "start_date")
@@ -29,10 +29,6 @@ public class Hotel extends BaseEntity{
 	@NotNull
 	@FutureOrPresent
 	private LocalDate finishDate;
-	
-	@NotEmpty
-	@Column(name = "details")
-	private String details;
 	
 	@ManyToOne
 	@JoinColumn(name = "pet_id")
@@ -62,13 +58,4 @@ public class Hotel extends BaseEntity{
 		this.finishDate = finishDate;
 	}
 
-	public String getDetails() {
-		return details;
-	}
-
-	public void setDetails(String details) {
-		this.details = details;
-	}
-	
-	
 }
