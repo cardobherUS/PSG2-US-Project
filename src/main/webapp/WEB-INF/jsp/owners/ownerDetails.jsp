@@ -124,14 +124,12 @@
                     <table class="table-condensed">
                         <thead>
                         <tr>
-                        	 <th>Name</th>
                             <th>Start Date</th>
                             <th>Finish Date</th>
                         </tr>
                         </thead>
                         <c:forEach var="hotel" items="${pet.hotels}">
                             <tr>
-                            	 <td><c:out value="${hotel.name}"/></td>
                                 <td><petclinic:localDate date="${hotel.startDate}" pattern="yyyy-MM-dd"/></td>
                                 <td><petclinic:localDate date="${hotel.finishDate}" pattern="yyyy-MM-dd"/></td>
                             </tr>
