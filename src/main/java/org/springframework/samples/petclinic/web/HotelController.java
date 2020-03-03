@@ -49,7 +49,7 @@ public class HotelController {
 	@PostMapping(value = "/owners/{ownerId}/pets/{petId}/hotels/new")
 	public String processNewHotelForm(@Valid Hotel hotel, BindingResult result) {
 		if(hotel.getFinishDate().isBefore(hotel.getStartDate())) {
-			result.addError(new ObjectError("hotel", "Finish date must be after than start date"));
+			result.rejectValue("finishDate", "wrongDate",  "Finish date must be after than start date");
 		}
 		if (result.hasErrors()) {
 			return "pets/createOrUpdateHotelForm";
