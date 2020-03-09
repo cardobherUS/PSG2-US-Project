@@ -2,13 +2,14 @@ package org.springframework.samples.petclinic.repository;
 
 import java.util.List;
 
-import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.samples.petclinic.model.Hotel;
-import org.springframework.samples.petclinic.model.Visit;
+import org.springframework.stereotype.Repository;
 
-public interface HotelRepository {
+@Repository
+public interface HotelRepository extends CrudRepository<Hotel, Integer>{
 
-	void save(Hotel hotel) throws DataAccessException;
-	
-	List<Hotel> findByPetId(Integer petId);
+	@Query("select h from Hotel h where h.pet.id=?1")
+	List<Hotel> findByPetId(int petId);
 }
