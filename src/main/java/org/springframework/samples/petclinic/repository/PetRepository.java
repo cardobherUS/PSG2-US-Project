@@ -22,6 +22,7 @@ import javax.transaction.Transactional;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.model.Pet;
@@ -38,7 +39,7 @@ import org.springframework.samples.petclinic.model.PetType;
  * @author Sam Brannen
  * @author Michael Isvy
  */
-public interface PetRepository {
+public interface PetRepository extends CrudRepository<Pet, Integer>{
 
 	/**
 	 * Retrieve all <code>PetType</code>s from the data store.
@@ -59,8 +60,8 @@ public interface PetRepository {
 	 * @param pet the <code>Pet</code> to save
 	 * @see BaseEntity#isNew
 	 */
-	void save(Pet pet) throws DataAccessException;
 
 	void delete(Pet pet) throws DataAccessException;
+
 
 }
