@@ -41,7 +41,7 @@
     <br/>
     <br/>
     <br/>
-    <h2>Pets, Visits and Hotel Books</h2>
+    <h2>Pets and Visits</h2>
 
     <table class="table table-striped">
         <c:forEach var="pet" items="${owner.pets}">
@@ -60,31 +60,15 @@
                 <td valign="top">
                     <table class="table-condensed">
                         <thead>
-                        <tr align="left">
-                        	<th>Visits:</th>
-                            <th>Date</th>
+                        <tr>
+                            <th>Visit Date</th>
                             <th>Description</th>
                         </tr>
                         </thead>
                         <c:forEach var="visit" items="${pet.visits}">
                             <tr>
-                            	<td></td>
                                 <td><petclinic:localDate date="${visit.date}" pattern="yyyy-MM-dd"/></td>
                                 <td><c:out value="${visit.description}"/></td>
-                            </tr>
-                        </c:forEach>
-                        <thead>
-                        <tr align="right">
-                        	<th>Hotel Books:</th>
-                            <th>Start Date</th>
-                            <th>Finish Date</th>
-                        </tr>
-                        </thead>
-                        <c:forEach var="hotel" items="${pet.hotels}">
-                            <tr>
-                            	<td></td>
-                                <td><petclinic:localDate date="${hotel.startDate}" pattern="yyyy-MM-dd"/></td>
-                                <td><petclinic:localDate date="${hotel.finishDate}" pattern="yyyy-MM-dd"/></td>
                             </tr>
                         </c:forEach>
                         <tr>
@@ -108,14 +92,7 @@
                                     <spring:param name="petId" value="${pet.id}"/>
                                 </spring:url>
                                 <a href="${fn:escapeXml(visitUrl)}">Add Visit</a>
-                             </td>
-                             <td>
-                                <spring:url value="/owners/{ownerId}/pets/{petId}/hotels/new" var="hotelUrl">
-                                    <spring:param name="ownerId" value="${owner.id}"/>
-                                    <spring:param name="petId" value="${pet.id}"/>
-                                </spring:url>
-                                <a href="${fn:escapeXml(hotelUrl)}">Add Hotel Book</a>
-                             </td>
+                            </td>
                         </tr>
                     </table>
                 </td>
