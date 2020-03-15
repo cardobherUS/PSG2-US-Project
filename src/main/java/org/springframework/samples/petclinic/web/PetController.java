@@ -1,3 +1,4 @@
+
 /*
  * Copyright 2002-2013 the original author or authors.
  *
@@ -113,7 +114,7 @@ public class PetController {
 		}
 	}
 
-	@GetMapping(value = "/pets/{petId}/remove")
+	@GetMapping(value = "/pets/{petId}/delete")
 	public String processDelete(@PathVariable("petId") int petId, @PathVariable("ownerId") int ownerId, ModelMap model) {
 		Pet pet = this.clinicService.findPetById(petId);
 		Owner owner = this.clinicService.findOwnerById(ownerId);
