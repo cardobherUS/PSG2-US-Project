@@ -63,4 +63,7 @@ public interface OwnerRepository extends CrudRepository<Owner, Integer>{
 
 	void delete(Owner owner) throws DataAccessException;
 
+  	
+	void save(Owner owner) throws DataAccessException;
+  
 }
