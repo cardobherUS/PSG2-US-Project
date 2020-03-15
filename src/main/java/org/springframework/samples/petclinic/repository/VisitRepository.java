@@ -47,7 +47,4 @@ public interface VisitRepository extends CrudRepository<Visit, Integer>{
 	Visit findVisitByPetId(int petId) throws DataAccessException;
 
 	Visit findById(int vetId) throws DataAccessException;
-
-
-
 }

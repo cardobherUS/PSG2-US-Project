@@ -79,12 +79,10 @@ public class ClinicService {
 		ownerRepository.save(owner);
 	}
 	
-	@Transactional
 	public void deletePet(Pet pet) throws DataAccessException {
 		petRepository.delete(pet);
 	}
 
-	@Transactional
 	public void saveVisit(Visit visit) throws DataAccessException {
 		visitRepository.save(visit);
 	}
@@ -127,7 +125,7 @@ public class ClinicService {
 	}
 
 	public void deleteVisit(Visit visit) {
-		this.visitRepository.deleteById(visit.getId());
+		this.visitRepository.delete(visit);
 		
 	}
 
