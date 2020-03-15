@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <petclinic:layout pageName="vets">
     <h2>Veterinarians</h2>
@@ -19,7 +20,7 @@
         <tbody>
         <c:forEach items="${vets.vetList}" var="vet">
             <tr>
-                <td>
+                 <td>
                     <c:out value="${vet.firstName} ${vet.lastName}"/>
                 </td>
                 <td>
@@ -33,6 +34,11 @@
                         <spring:param name="vetId" value="${vet.id}"/>
                     </spring:url>
                     <a href="${fn:escapeXml(deleteVetUrl)}">Delete Vet</a>
+                 <td>
+                    <spring:url value="/vets/{vetId}/edit" var="vetUrl">
+                        <spring:param name="vetId" value="${vet.id}"/>
+                    </spring:url>
+                    <a href="${fn:escapeXml(vetUrl)}"><c:out value="Edit"/></a>
                 </td>
             </tr>
         </c:forEach>
