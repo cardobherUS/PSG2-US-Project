@@ -22,11 +22,15 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Vets;
 import org.springframework.samples.petclinic.service.ClinicService;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Controller;<<<<<<< T11
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -78,6 +82,13 @@ public class VetController {
 		Vets vets = new Vets();
 		vets.getVetList().addAll(this.clinicService.findVets());
 		return vets;
+	}
+	
+	@GetMapping("/vets/{vetId}/delete")
+	public String processDelete(@PathVariable("vetId") int vetId, ModelMap model) {
+		Vet vet = this.clinicService.findVetById(vetId);
+		this.clinicService.deleteVet(vet);
+		return showVetList(model);
 	}
 
 	@GetMapping("/vets/{vetId}")

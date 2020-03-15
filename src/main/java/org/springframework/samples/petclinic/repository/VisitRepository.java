@@ -18,6 +18,8 @@ package org.springframework.samples.petclinic.repository;
 import java.util.List;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.samples.petclinic.model.BaseEntity;
 import org.springframework.samples.petclinic.model.Visit;
 
@@ -32,15 +34,17 @@ import org.springframework.samples.petclinic.model.Visit;
  * @author Sam Brannen
  * @author Michael Isvy
  */
-public interface VisitRepository {
+public interface VisitRepository extends CrudRepository<Visit, Integer>{
 
 	/**
 	 * Save a <code>Visit</code> to the data store, either inserting or updating it.
 	 * @param visit the <code>Visit</code> to save
 	 * @see BaseEntity#isNew
 	 */
-	void save(Visit visit) throws DataAccessException;
+	List<Visit> findByPetId(Integer petId) throws DataAccessException;
 
-	List<Visit> findByPetId(Integer petId);
+	@Query("select v from Visit v where v.id=?1")
+	Visit findVisitByPetId(int petId) throws DataAccessException;
 
+	Visit findById(int vetId) throws DataAccessException;
 }

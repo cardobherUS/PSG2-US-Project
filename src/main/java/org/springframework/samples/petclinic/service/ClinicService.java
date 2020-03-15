@@ -142,4 +142,26 @@ public class ClinicService {
 		return hotelRepository.findByPetId(petId);
 	}
 
+	public void deleteOwner(Owner owner) {
+		ownerRepository.delete(owner);
+	}
+
+	public Vet findVetById(int vetId) {
+		return this.vetRepository.findById(vetId);
+	}
+
+	public void deleteVet(Vet vet) {
+		this.vetRepository.delete(vet);
+		
+	}
+
+	public Visit findById(int vetId) {
+		return this.visitRepository.findById(vetId);
+	}
+
+	public void deleteVisit(Visit visit) {
+		this.visitRepository.delete(visit);
+		
+	}
+
 }
