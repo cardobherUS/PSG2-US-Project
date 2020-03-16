@@ -12,4 +12,6 @@ public interface HotelRepository extends CrudRepository<Hotel, Integer>{
 
 	@Query("select h from Hotel h where h.pet.id=?1")
 	List<Hotel> findByPetId(int petId);
+	
+	Hotel findById(int hotelId);
 }
