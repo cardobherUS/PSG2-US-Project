@@ -109,4 +109,28 @@ public class VetController {
 	public Collection<Specialty> populateSpecialitiesTypes() {
 		return this.clinicService.findSpecialities();
 	}
+
+	@GetMapping(value = "/vets/new")
+	public String initCreationForm(final Map<String, Object> model) {
+		Vet vet = new Vet();
+		model.put("vet", vet);
+		return VetController.VIEWS_VET_CREATE_OR_UPDATE_FORM;
+	}
+
+	@PostMapping(value = "/vets/new")
+	public String processCreationForm(@Valid final Vet vet, final BindingResult result) {
+		if (result.hasErrors()) {
+			return VetController.VIEWS_VET_CREATE_OR_UPDATE_FORM;
+		} else {
+			this.clinicService.saveVet(vet);
+			return "redirect:/vets/";
+		}
+	}
+
+	@GetMapping(value = "/vets/{vetId}/delete")
+	public String deleteVet(@PathVariable("vetId") final int vetId) {
+		Vet vet = this.clinicService.findVetById(vetId);
+		this.clinicService.deleteVet(vet);
+		return "redirect:/vets";
+	}
 }

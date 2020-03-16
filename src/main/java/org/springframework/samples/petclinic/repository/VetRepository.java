@@ -43,6 +43,10 @@ public interface VetRepository {
 	 */
 	Collection<Vet> findAll() throws DataAccessException;
 
+	Vet findById(int vetId) throws DataAccessException;
+
+	void delete(Vet vet) throws DataAccessException;
+
 	void save(Vet vet) throws DataAccessException;
 
 	List<Specialty> findSpecialityTypes() throws DataAccessException;

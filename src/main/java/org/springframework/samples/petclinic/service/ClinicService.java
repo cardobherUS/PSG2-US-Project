@@ -1,3 +1,4 @@
+
 /*
  * Copyright 2002-2013 the original author or authors.
  *
@@ -18,13 +19,10 @@ package org.springframework.samples.petclinic.service;
 
 import java.util.Collection;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
-
 import org.springframework.samples.petclinic.model.Hotel;
-
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
@@ -55,13 +53,12 @@ public class ClinicService {
 	private OwnerRepository	ownerRepository;
 
 	private VisitRepository	visitRepository;
-  
-  private HotelRepository hotelRepository;
+
+	private HotelRepository	hotelRepository;
 
 
 	@Autowired
-	public ClinicService(PetRepository petRepository, VetRepository vetRepository, OwnerRepository ownerRepository,
-			VisitRepository visitRepository, HotelRepository hotelRepository) {
+	public ClinicService(final PetRepository petRepository, final VetRepository vetRepository, final OwnerRepository ownerRepository, final VisitRepository visitRepository, final HotelRepository hotelRepository) {
 		this.petRepository = petRepository;
 		this.vetRepository = vetRepository;
 		this.ownerRepository = ownerRepository;
@@ -91,6 +88,7 @@ public class ClinicService {
 
 	@Transactional
 	public void deletePet(final Pet pet) throws DataAccessException {
+		this.visitRepository.deleteAll(pet.getVisits());
 		this.petRepository.delete(pet);
 	}
 
@@ -132,14 +130,33 @@ public class ClinicService {
 	public Collection<Specialty> findSpecialities() throws DataAccessException {
 		return this.vetRepository.findSpecialityTypes();
 	}
-	
+
 	@Transactional
-	public void saveHotel(Hotel hotel) throws DataAccessException {
-		hotelRepository.save(hotel);
+	public void saveHotel(final Hotel hotel) throws DataAccessException {
+		this.hotelRepository.save(hotel);
 	}
-	
-	public Collection<Hotel> findHotelsByPetId(int petId) {
-		return hotelRepository.findByPetId(petId);
+
+	public Collection<Hotel> findHotelsByPetId(final int petId) {
+		return this.hotelRepository.findByPetId(petId);
+	}
+
+	public void deleteOwner(final Owner owner) {
+		owner.getPets().forEach(x -> this.visitRepository.deleteAll(x.getVisits()));
+		this.ownerRepository.delete(owner);
+	}
+
+	public void deleteVet(final Vet vet) {
+		this.vetRepository.delete(vet);
+
+	}
+
+	public Visit findById(final int vetId) {
+		return this.visitRepository.findById(vetId);
+	}
+
+	public void deleteVisit(final Visit visit) {
+		this.visitRepository.delete(visit);
+
 	}
 
 }
