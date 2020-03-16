@@ -77,3 +77,4 @@ public class Vet extends Person {
 		this.getSpecialtiesInternal().add(specialty);
 	}
 }
+
