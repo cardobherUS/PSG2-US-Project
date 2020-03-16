@@ -89,6 +89,7 @@ public class ClinicService {
 	@Transactional
 	public void deletePet(final Pet pet) throws DataAccessException {
 		this.visitRepository.deleteAll(pet.getVisits());
+		this.hotelRepository.deleteAll(pet.getHotels());
 		this.petRepository.delete(pet);
 	}
 
@@ -142,6 +143,7 @@ public class ClinicService {
 
 	public void deleteOwner(final Owner owner) {
 		owner.getPets().forEach(x -> this.visitRepository.deleteAll(x.getVisits()));
+		owner.getPets().forEach(x -> this.hotelRepository.deleteAll(x.getHotels()));
 		this.ownerRepository.delete(owner);
 	}
 
@@ -160,6 +162,14 @@ public class ClinicService {
 	
 	public boolean isDuplicatedDni(String dni) {
 		return ownerRepository.isDuplicatedDniOwner(dni) || vetRepository.isDuplicatedDniVet(dni);
+  }
+  
+	public void deleteHotel(final Hotel hotel) {
+		this.hotelRepository.delete(hotel);
+	}
+
+	public Hotel findHotelByPetId(int hotelId) {
+		return this.hotelRepository.findById(hotelId);
 	}
 
 }

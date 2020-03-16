@@ -7,9 +7,11 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Hotel;
+import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.service.ClinicService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -64,5 +66,14 @@ public class HotelController {
 	public String showHotels(@PathVariable int petId, Map<String, Object> model) {
 		model.put("hotels", this.clinicService.findPetById(petId).getHotels());
 		return "hotelList";
+	}
+	
+	@GetMapping("/owners/{ownerId}/pets/{petId}/hotels/{hotelId}/delete")
+	public String processDelete(@PathVariable("ownerId") int ownerId, @PathVariable("petId") int petId, @PathVariable("hotelId") int hotelId, ModelMap model) {
+		Pet pet = this.clinicService.findPetById(petId);
+		Hotel hotel = this.clinicService.findHotelByPetId(hotelId);
+		pet.deleteHotel(hotel);
+		this.clinicService.deleteHotel(hotel);
+		return "redirect:/owners/"+ownerId;
 	}
 }
