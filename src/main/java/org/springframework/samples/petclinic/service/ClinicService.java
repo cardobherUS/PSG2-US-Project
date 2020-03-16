@@ -140,6 +140,7 @@ public class ClinicService {
 	}
 
 	public void deleteOwner(final Owner owner) {
+		owner.getPets().forEach(x->visitRepository.deleteAll(x.getVisits()));
 		this.ownerRepository.delete(owner);
 	}
 
