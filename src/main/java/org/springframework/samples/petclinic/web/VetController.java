@@ -126,4 +126,11 @@ public class VetController {
 			return "redirect:/vets/";
 		}
 	}
+
+	@GetMapping(value = "/vets/{vetId}/delete")
+	public String deleteVet(@PathVariable("vetId") final int vetId) {
+		Vet vet = this.clinicService.findVetById(vetId);
+		this.clinicService.deleteVet(vet);
+		return "redirect:/vets";
+	}
 }
