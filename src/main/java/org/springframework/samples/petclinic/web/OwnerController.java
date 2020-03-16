@@ -16,6 +16,7 @@
 package org.springframework.samples.petclinic.web;
 
 import java.util.Collection;
+
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -63,6 +64,9 @@ public class OwnerController {
 
 	@PostMapping(value = "/owners/new")
 	public String processCreationForm(@Valid Owner owner, BindingResult result) {
+		if(clinicService.isDuplicatedDni(owner.getDni())) {
+			result.rejectValue("dni", "duplicatedDni", "This DNI is duplicated");
+		}
 		if (result.hasErrors()) {
 			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 		}
@@ -115,6 +119,10 @@ public class OwnerController {
 	@PostMapping(value = "/owners/{ownerId}/edit")
 	public String processUpdateOwnerForm(@Valid Owner owner, BindingResult result,
 			@PathVariable("ownerId") int ownerId) {
+		Owner ownerWithOutUpdate = clinicService.findOwnerById(ownerId);
+		if(clinicService.isDuplicatedDni(owner.getDni()) && !owner.getDni().equals(ownerWithOutUpdate.getDni())) {
+			result.rejectValue("dni", "duplicatedDni", "This DNI is duplicated");
+		}
 		if (result.hasErrors()) {
 			return VIEWS_OWNER_CREATE_OR_UPDATE_FORM;
 		}

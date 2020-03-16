@@ -156,7 +156,10 @@ public class ClinicService {
 
 	public void deleteVisit(final Visit visit) {
 		this.visitRepository.delete(visit);
-
+	}
+	
+	public boolean isDuplicatedDni(String dni) {
+		return ownerRepository.isDuplicatedDniOwner(dni) || vetRepository.isDuplicatedDniVet(dni);
 	}
 
 }
