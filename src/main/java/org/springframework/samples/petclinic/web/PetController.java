@@ -118,6 +118,7 @@ public class PetController {
 	public String processDelete(@PathVariable("petId") int petId, @PathVariable("ownerId") int ownerId, ModelMap model) {
 		Pet pet = this.clinicService.findPetById(petId);
 		Owner owner = this.clinicService.findOwnerById(ownerId);
+		
 		owner.deletePet(pet);
 		this.clinicService.deletePet(pet);
 		return "redirect:/owners/{ownerId}";

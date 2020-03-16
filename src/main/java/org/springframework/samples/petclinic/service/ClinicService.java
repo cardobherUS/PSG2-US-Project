@@ -88,6 +88,8 @@ public class ClinicService {
 
 	@Transactional
 	public void deletePet(final Pet pet) throws DataAccessException {
+		this.hotelRepository.deleteAll(pet.getHotels());
+		this.visitRepository.deleteAll(pet.getVisits());
 		this.petRepository.delete(pet);
 	}
 
