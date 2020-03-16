@@ -16,6 +16,10 @@
             <td><b><c:out value="${owner.firstName} ${owner.lastName}"/></b></td>
         </tr>
         <tr>
+        <th>Name</th>
+            <td><c:out value="${owner.dni}"/></td>
+        </tr>
+        <tr>
             <th>Address</th>
             <td><c:out value="${owner.address}"/></td>
         </tr>

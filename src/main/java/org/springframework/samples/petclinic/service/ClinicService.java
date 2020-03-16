@@ -160,6 +160,10 @@ public class ClinicService {
 		this.visitRepository.delete(visit);
 	}
 	
+	public boolean isDuplicatedDni(String dni) {
+		return ownerRepository.isDuplicatedDniOwner(dni) || vetRepository.isDuplicatedDniVet(dni);
+  }
+  
 	public void deleteHotel(final Hotel hotel) {
 		this.hotelRepository.delete(hotel);
 	}

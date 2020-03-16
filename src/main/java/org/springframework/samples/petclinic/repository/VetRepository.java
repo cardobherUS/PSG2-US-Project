@@ -52,5 +52,7 @@ public interface VetRepository {
 	List<Specialty> findSpecialityTypes() throws DataAccessException;
 
 	Vet findVetById(int id) throws DataAccessException;
+	
+	boolean isDuplicatedDniVet(String dni);
 
 }

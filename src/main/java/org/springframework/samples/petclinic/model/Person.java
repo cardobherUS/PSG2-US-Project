@@ -18,6 +18,9 @@ package org.springframework.samples.petclinic.model;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+
+import org.hibernate.validator.constraints.Length;
 
 /**
  * Simple JavaBean domain object representing an person.
@@ -34,6 +37,12 @@ public class Person extends BaseEntity {
 	@Column(name = "last_name")
 	@NotEmpty
 	protected String lastName;
+	
+	@Column(name = "dni", unique = true)
+	@NotEmpty
+	@Pattern(regexp = "[0-9]{7,8}[A-Za-z]", message = "DNI must be 8 digits and 1 letter. For example: 12345678A")
+	@Length(max = 9, min = 9, message = "Lenght must be 9")
+	protected String dni;
 
 	public String getFirstName() {
 		return this.firstName;
@@ -50,5 +59,15 @@ public class Person extends BaseEntity {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+	
+	
 
 }

@@ -42,4 +42,7 @@ public interface SpringDataVetRepository extends VetRepository, Repository<Vet, 
 	@Transactional
 	@Query("SELECT vet FROM Vet vet WHERE vet.id=?1")
 	Vet findVetById(int id) throws DataAccessException;
+	
+	@Query("select count(v)>0 from Vet v where v.dni = ?1")
+	boolean isDuplicatedDniVet(String dni);
 }
