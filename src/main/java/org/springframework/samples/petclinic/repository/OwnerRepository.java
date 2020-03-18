@@ -70,5 +70,7 @@ public interface OwnerRepository {
 	void delete(Owner owner) throws DataAccessException;
 
 	void save(Owner owner) throws DataAccessException;
+	
+	boolean isDuplicatedDniOwner(String id) throws DataAccessException;
 
 }

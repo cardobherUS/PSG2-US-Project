@@ -61,7 +61,7 @@ public class Pet extends NamedEntity {
 	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "pet", fetch = FetchType.EAGER)
 	private Set<Visit> visits;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "pet", fetch = FetchType.EAGER)
+	@OneToMany(cascade = CascadeType.MERGE, mappedBy = "pet", fetch = FetchType.EAGER)
 	private Set<Hotel> hotels;
 
 	public void setBirthDate(LocalDate birthDate) {
@@ -134,6 +134,11 @@ public class Pet extends NamedEntity {
 
 	public void deleteVisit(Visit visit) {
 		getVisitsInternal().remove(visit);		
+	}
+
+	public void deleteHotel(Hotel hotel) {
+		getHotelsInternal().remove(hotel);
+		
 	}
 
 }

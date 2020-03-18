@@ -12,6 +12,7 @@
         <thead>
         <tr>
             <th style="width: 150px;">Name</th>
+            <th>DNI</th>
             <th style="width: 200px;">Address</th>
             <th>City</th>
             <th style="width: 120px">Telephone</th>
@@ -26,6 +27,9 @@
                         <spring:param name="ownerId" value="${owner.id}"/>
                     </spring:url>
                     <a href="${fn:escapeXml(ownerUrl)}"><c:out value="${owner.firstName} ${owner.lastName}"/></a>
+                </td>
+                 <td>
+                    <c:out value="${owner.dni}"/>
                 </td>
                 <td>
                     <c:out value="${owner.address}"/>

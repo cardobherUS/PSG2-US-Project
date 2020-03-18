@@ -96,6 +96,10 @@ public class VetController {
 
 	@PostMapping(value = "/vets/{vetId}/edit")
 	public String processUpdateOwnerForm(@Valid final Vet vet, final BindingResult result, @PathVariable("vetId") final int vetId) {
+		Vet vetWithOutUpdate = clinicService.findVetById(vetId);
+		if(clinicService.isDuplicatedDni(vet.getDni()) && !vet.getDni().equals(vetWithOutUpdate.getDni())) {
+			result.rejectValue("dni", "duplicatedDni", "This DNI is duplicated");
+		}
 		if (result.hasErrors()) {
 			return VetController.VIEWS_VET_CREATE_OR_UPDATE_FORM;
 		} else {
@@ -119,6 +123,9 @@ public class VetController {
 
 	@PostMapping(value = "/vets/new")
 	public String processCreationForm(@Valid final Vet vet, final BindingResult result) {
+		if(clinicService.isDuplicatedDni(vet.getDni())) {
+			result.rejectValue("dni", "duplicatedDni", "This DNI is duplicated");
+		}
 		if (result.hasErrors()) {
 			return VetController.VIEWS_VET_CREATE_OR_UPDATE_FORM;
 		} else {
