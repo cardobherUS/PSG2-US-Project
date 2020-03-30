@@ -55,3 +55,7 @@ INSERT INTO visits VALUES (4, 7, '2013-01-04', 'spayed');
 INSERT INTO hotels VALUES (1, 'hotel1', '2020-05-10', '2020-05-12', 1);
 INSERT INTO hotels VALUES (2, 'hotel2', '2020-06-18', '2020-06-20', 7);
 INSERT INTO hotels VALUES (3, 'hotel3', '2020-10-25', '2020-10-25', 3);
+
+INSERT INTO causes VALUES (1,'Cause1','This is a description',500,'Organization1');
+INSERT INTO causes VALUES (2,'Cause2','This is a description',200,'Organization2');
+INSERT INTO causes VALUES (3,'Cause3','This is a description',1000,'Organization3');
