@@ -79,6 +79,6 @@ CREATE TABLE causes (
   id          INTEGER IDENTITY PRIMARY KEY,
   name VARCHAR(255),
   description VARCHAR(255),
-  budgetTarger INTEGER,
+  budget_target INTEGER,
   organization VARCHAR(255)
 );

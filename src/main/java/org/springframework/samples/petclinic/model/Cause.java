@@ -1,6 +1,7 @@
 
 package org.springframework.samples.petclinic.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
@@ -8,10 +9,13 @@ import javax.persistence.Table;
 @Table(name = "causes")
 public class Cause extends NamedEntity {
 
+	@Column(name = "description")
 	private String	description;
 
+	@Column(name = "budget_target")
 	private Integer	budgetTarget;
 
+	@Column(name = "organization")
 	private String	organization;
 
 
