@@ -22,6 +22,7 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.model.Cause;
 import org.springframework.samples.petclinic.model.Hotel;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
@@ -29,6 +30,7 @@ import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Visit;
+import org.springframework.samples.petclinic.repository.CauseRepository;
 import org.springframework.samples.petclinic.repository.HotelRepository;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
 import org.springframework.samples.petclinic.repository.PetRepository;
@@ -56,14 +58,17 @@ public class ClinicService {
 
 	private HotelRepository	hotelRepository;
 
+	private CauseRepository	causeRepository;
+
 
 	@Autowired
-	public ClinicService(final PetRepository petRepository, final VetRepository vetRepository, final OwnerRepository ownerRepository, final VisitRepository visitRepository, final HotelRepository hotelRepository) {
+	public ClinicService(final PetRepository petRepository, final VetRepository vetRepository, final OwnerRepository ownerRepository, final VisitRepository visitRepository, final HotelRepository hotelRepository, final CauseRepository causeRepository) {
 		this.petRepository = petRepository;
 		this.vetRepository = vetRepository;
 		this.ownerRepository = ownerRepository;
 		this.visitRepository = visitRepository;
 		this.hotelRepository = hotelRepository;
+		this.causeRepository = causeRepository;
 	}
 
 	@Transactional(readOnly = true)
@@ -159,17 +164,22 @@ public class ClinicService {
 	public void deleteVisit(final Visit visit) {
 		this.visitRepository.delete(visit);
 	}
-	
-	public boolean isDuplicatedDni(String dni) {
-		return ownerRepository.isDuplicatedDniOwner(dni) || vetRepository.isDuplicatedDniVet(dni);
-  }
-  
+
+	public boolean isDuplicatedDni(final String dni) {
+		return this.ownerRepository.isDuplicatedDniOwner(dni) || this.vetRepository.isDuplicatedDniVet(dni);
+	}
+
 	public void deleteHotel(final Hotel hotel) {
 		this.hotelRepository.delete(hotel);
 	}
 
-	public Hotel findHotelByPetId(int hotelId) {
+	public Hotel findHotelByPetId(final int hotelId) {
 		return this.hotelRepository.findById(hotelId);
+	}
+
+	@Transactional(readOnly = true)
+	public Iterable<Cause> findCauses() {
+		return this.causeRepository.findAll();
 	}
 
 }
