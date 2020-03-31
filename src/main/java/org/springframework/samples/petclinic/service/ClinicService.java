@@ -181,5 +181,9 @@ public class ClinicService {
 	public Iterable<Cause> findCauses() {
 		return this.causeRepository.findAll();
 	}
+	
+	public boolean canHotelBook(int petId) {
+		return hotelRepository.canBookHotelByPetId(petId);
+	}
 
 }
