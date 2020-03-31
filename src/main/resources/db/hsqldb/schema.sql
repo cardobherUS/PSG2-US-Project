@@ -3,8 +3,10 @@ DROP TABLE vets IF EXISTS;
 DROP TABLE specialties IF EXISTS;
 DROP TABLE visits IF EXISTS;
 DROP TABLE pets IF EXISTS;
+DROP TABLE hotels IF EXISTS;
 DROP TABLE types IF EXISTS;
 DROP TABLE owners IF EXISTS;
+DROP TABLE donations IF EXISTS;
 
 
 CREATE TABLE vets (
@@ -82,3 +84,17 @@ CREATE TABLE causes (
   budget_target INTEGER,
   organization VARCHAR(255)
 );
+
+CREATE INDEX causes_name ON causes (name);
+
+CREATE TABLE donations (
+  id         INTEGER IDENTITY PRIMARY KEY,
+  name VARCHAR(255),
+  amount DOUBLE NOT NULL,
+  donation_date DATE,
+  client     VARCHAR(30),
+  cause_id    INTEGER NOT NULL,
+);
+
+ALTER TABLE donations ADD CONSTRAINT fk_donations_causes FOREIGN KEY (cause_id) REFERENCES causes (id);
+CREATE INDEX donations_client ON donations (client);
