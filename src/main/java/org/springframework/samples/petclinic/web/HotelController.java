@@ -52,19 +52,30 @@ public class HotelController {
 	}
 
 	@PostMapping(value = "/owners/{ownerId}/pets/{petId}/hotels/new")
-	public String processNewHotelForm(@Valid Hotel hotel, BindingResult result, @PathVariable("petId") int petId) {
-		if (clinicService.canHotelBook(petId)) {
-			if (hotel.getFinishDate().isBefore(hotel.getStartDate())) {
-				result.rejectValue("finishDate", "wrongDate", "Finish date must be after than start date");
-			}
-			if (result.hasErrors()) {
-				return "pets/createOrUpdateHotelForm";
+	public String processNewHotelForm(@Valid Hotel hotel, BindingResult result) {
+		if (hotel.getFinishDate() != null && hotel.getStartDate() != null) {
+			if (clinicService.canHotelBook(hotel.getPet().getId())) {
+				if (hotel.getFinishDate().isBefore(hotel.getStartDate())) {
+					result.rejectValue("finishDate", "wrongDate", "Finish date must be after than start date");
+				}
+				if (this.clinicService.findHotelsByPetId(hotel.getPet().getId()).size() == 1) {
+					Hotel h = this.clinicService.findHotelsByPetId(hotel.getPet().getId()).iterator().next();
+					boolean canCreate = h.getFinishDate().isBefore(hotel.getStartDate())
+							|| h.getStartDate().isAfter(hotel.getFinishDate());
+					if (!canCreate) {
+						result.rejectValue("finishDate", "alreadyBookWithSameDates",
+								"There is a period that coincides with another hotel book");
+					}
+				}
 			} else {
-				this.clinicService.saveHotel(hotel);
-				return "redirect:/owners/{ownerId}";
+				return "/exception";
 			}
+		}
+		if (result.hasErrors()) {
+			return "pets/createOrUpdateHotelForm";
 		} else {
-			return "/exception";
+			this.clinicService.saveHotel(hotel);
+			return "redirect:/owners/{ownerId}";
 		}
 	}
 
