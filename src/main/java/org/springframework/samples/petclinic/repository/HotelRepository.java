@@ -14,4 +14,8 @@ public interface HotelRepository extends CrudRepository<Hotel, Integer>{
 	List<Hotel> findByPetId(int petId);
 	
 	Hotel findById(int hotelId);
+
+	@Query("select count(h)<2 from Hotel h where h.pet.id = ?1")
+	boolean canBookHotelByPetId(int petId);
+	
 }

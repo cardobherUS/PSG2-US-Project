@@ -187,6 +187,10 @@ public class ClinicService {
 		return this.causeRepository.findAll();
 	}
 	
+	public boolean canHotelBook(int petId) {
+		return hotelRepository.canBookHotelByPetId(petId);
+}
+  
 	public Cause findCauseById(final int causeId) {
 		return this.causeRepository.findByCauseId(causeId);
 	}
