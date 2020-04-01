@@ -1,6 +1,7 @@
 
 package org.springframework.samples.petclinic.repository;
 
+import java.util.Optional;
 import java.util.Collection;
 
 import org.springframework.data.jpa.repository.Query;
@@ -21,5 +22,8 @@ public interface CauseRepository extends CrudRepository<Cause, Integer> {
 	
 	@Override
 	Iterable<Cause> findAll();
+
+	@Query("select c from Cause c where c.name = ?1")
+	Optional<Cause> findCauseWithName(String name);
 
 }

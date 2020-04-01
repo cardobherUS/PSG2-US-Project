@@ -12,6 +12,10 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+
 
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
@@ -20,12 +24,15 @@ import org.springframework.beans.support.PropertyComparator;
 @Table(name = "causes")
 public class Cause extends NamedEntity {
 
+	@NotEmpty
 	@Column(name = "description")
 	private String	description;
 
+	@NotNull
 	@Column(name = "budget_target")
 	private Integer	budgetTarget;
 
+	@NotEmpty
 	@Column(name = "organization")
 	private String	organization;
 
