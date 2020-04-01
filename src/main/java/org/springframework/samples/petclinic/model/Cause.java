@@ -4,17 +4,24 @@ package org.springframework.samples.petclinic.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
+
 
 @Entity
 @Table(name = "causes")
 public class Cause extends NamedEntity {
 
+	@NotEmpty
 	@Column(name = "description")
 	private String	description;
 
+	@NotNull
 	@Column(name = "budget_target")
 	private Integer	budgetTarget;
 
+	@NotEmpty
 	@Column(name = "organization")
 	private String	organization;
 

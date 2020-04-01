@@ -182,4 +182,12 @@ public class ClinicService {
 		return this.causeRepository.findAll();
 	}
 
+	@Transactional
+	public void saveCause(final Cause cause) throws DataAccessException{
+		this.causeRepository.save(cause);
+	}
+
+	public boolean causeNameAlreadyExists(final String name) {
+		return this.causeRepository.findCauseWithName(name).orElse(null) != null;
+	}
 }
