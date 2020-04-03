@@ -50,23 +50,24 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class ClinicService {
 
-	private PetRepository	petRepository;
+	private PetRepository		petRepository;
 
-	private VetRepository	vetRepository;
+	private VetRepository		vetRepository;
 
-	private OwnerRepository	ownerRepository;
+	private OwnerRepository		ownerRepository;
 
-	private VisitRepository	visitRepository;
+	private VisitRepository		visitRepository;
 
-	private HotelRepository	hotelRepository;
+	private HotelRepository		hotelRepository;
 
-	private CauseRepository	causeRepository;
-	
-	private DonationRepository donationRepository;
+	private CauseRepository		causeRepository;
+
+	private DonationRepository	donationRepository;
 
 
 	@Autowired
-	public ClinicService(final PetRepository petRepository, final VetRepository vetRepository, final OwnerRepository ownerRepository, final VisitRepository visitRepository, final HotelRepository hotelRepository, final CauseRepository causeRepository, final DonationRepository donationRepository) {
+	public ClinicService(final PetRepository petRepository, final VetRepository vetRepository, final OwnerRepository ownerRepository, final VisitRepository visitRepository, final HotelRepository hotelRepository, final CauseRepository causeRepository,
+		final DonationRepository donationRepository) {
 		this.petRepository = petRepository;
 		this.vetRepository = vetRepository;
 		this.ownerRepository = ownerRepository;
@@ -186,25 +187,33 @@ public class ClinicService {
 	public Iterable<Cause> findCauses() {
 		return this.causeRepository.findAll();
 	}
-	
-	public boolean canHotelBook(int petId) {
-		return hotelRepository.canBookHotelByPetId(petId);
-}
-  
+
+	public boolean canHotelBook(final int petId) {
+		return this.hotelRepository.canBookHotelByPetId(petId);
+	}
+
 	public Cause findCauseById(final int causeId) {
 		return this.causeRepository.findByCauseId(causeId);
 	}
-	
-	public Collection<Donation> findAllDonationsByCauseId(final int causeId){
+
+	public Collection<Donation> findAllDonationsByCauseId(final int causeId) {
 		return this.donationRepository.findAllDonationsByCauseId(causeId);
 	}
 
 	@Transactional
-	public void saveCause(final Cause cause) throws DataAccessException{
+	public void saveCause(final Cause cause) throws DataAccessException {
 		this.causeRepository.save(cause);
 	}
 
 	public boolean causeNameAlreadyExists(final String name) {
 		return this.causeRepository.findCauseWithName(name).orElse(null) != null;
+	}
+
+	public Double totalBudget(final int causeId) {
+		return this.causeRepository.totalBudget(causeId);
+	}
+
+	public void saveDonation(final Donation donation) throws DataAccessException {
+		this.donationRepository.save(donation);
 	}
 }

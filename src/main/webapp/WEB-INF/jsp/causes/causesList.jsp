@@ -17,6 +17,7 @@
             <th>Budget Achieved</th>
             <th>Budget Target</th>
             <th>Options</th>
+            <th>Donations</th>
         </tr>
         </thead>
         <tbody>
@@ -36,7 +37,14 @@
                         <spring:param name="causeId" value="${cause.id}"/>
                     </spring:url>
                     <a href="${fn:escapeXml(CauseUrl)}">Show Details</a>
-                </td>         
+                </td>    
+                 <td>    
+                 	         
+                    <spring:url value="/causes/{causeId}/donations/new" var="danationUrl">
+                        <spring:param name="causeId" value="${cause.id}"/>
+                    </spring:url>
+                    <a href="${fn:escapeXml(danationUrl)}"><c:out value="Donate"/></a>
+                </td>       
             </tr>
         </c:forEach>
         </tbody>
