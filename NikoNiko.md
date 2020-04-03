@@ -32,11 +32,11 @@ In the retrospective meeting, the team has a discussion about those results.
 
 ## Sprint L3 Template
 
-| Day           |   jorandmol   |   reyblacua    |   pabcubcru    |   cardobher    |   conmarred    |      mrf       |
+| Day           |   jorandmol   |   reyblacua    |   pabcubcru    |   cardobher    |   conmarred    |     mruano     |
 | ------------- | ------------- | -------------  | -------------  | -------------  | -------------  | -------------  |
-| 01/04         |   :smiley:    |                |                |   :smiley:     |                |                |
-| 02/04         |   :smiley:    |                |                |       -        |   :smiley:     |                |
-| 03/04         |               |                |                |                |   :smiley:     |                |
+| 01/04         |   :smiley:    |                |                |   :smiley:     |                |   :smiley:     |
+| 02/04         |   :smiley:    |                |                |       -        |   :smiley:     |   :smiley:     |
+| 03/04         |               |                |                |                |   :smiley:     | :neutral_face: |
 | 04/04         |               |                |                |                |                |                |
 | 05/04         |               |                |                |                |                |                |
 | 06/04         |               |                |                |                |                |                |
