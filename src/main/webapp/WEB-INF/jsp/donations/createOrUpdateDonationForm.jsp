@@ -22,6 +22,7 @@
                     </div>
              </div>
       		<form:hidden path="date"/>
+      		<label class="col-sm-2 control-label"></label><p>The maximum amount you can give is <c:out value="${maxDonation}"/></p>
             <petclinic:inputField label="Amount" name="amount"/>
             <petclinic:selectField label="Client" name="client" size="5" names="${clients}"/>
         </div>
