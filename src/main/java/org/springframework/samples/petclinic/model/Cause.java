@@ -15,8 +15,6 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
-
-
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 
@@ -60,20 +58,31 @@ public class Cause extends NamedEntity {
 	public void setOrganization(final String organization) {
 		this.organization = organization;
 	}
-	
+
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cause")
 	private Set<Donation> donations;
-	
-	protected Set<Donation> getDonationsInternal(){
-		if(this.donations == null) {
+
+
+	protected Set<Donation> getDonationsInternal() {
+		if (this.donations == null) {
 			this.donations = new HashSet<>();
 		}
 		return this.donations;
 	}
-	
+
 	public List<Donation> getDonations() {
-		List<Donation> sortedDonations = new ArrayList<>(getDonationsInternal());
+		List<Donation> sortedDonations = new ArrayList<>(this.getDonationsInternal());
 		PropertyComparator.sort(sortedDonations, new MutableSortDefinition("date", false, false));
 		return Collections.unmodifiableList(sortedDonations);
-}
+	}
+
+	public Double getTotalAmount() {
+		return this.donations.stream().mapToDouble(d -> d.getAmount()).sum();
+	}
+
+	public void addDonation(final Donation donation) {
+		this.getDonationsInternal().add(donation);
+		donation.setCause(this);
+	}
 }

@@ -1,4 +1,6 @@
+
 package org.springframework.samples.petclinic.model;
+
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -19,51 +21,52 @@ public class Donation extends NamedEntity {
 	@NotNull
 	@Column(name = "amount")
 	@Min(0)
-	private Double amount;
-	
+	private Double		amount;
+
 	@NotNull
 	@Column(name = "donation_date")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	private LocalDate date;
-	
+	private LocalDate	date;
+
 	@NotBlank
 	@Column(name = "client")
-	private String client;
+	private String		client;
 
 	@ManyToOne
 	@JoinColumn(name = "cause_id")
-	private Cause cause;
-	
+	private Cause		cause;
+
+
 	public Double getAmount() {
-		return amount;
+		return this.amount;
 	}
 
-	public void setAmount(Double amount) {
+	public void setAmount(final Double amount) {
 		this.amount = amount;
 	}
 
 	public LocalDate getDate() {
-		return date;
+		return this.date;
 	}
 
-	public void setDate(LocalDate date) {
+	public void setDate(final LocalDate date) {
 		this.date = date;
 	}
 
 	public String getClient() {
-		return client;
+		return this.client;
 	}
 
-	public void setClient(String client) {
+	public void setClient(final String client) {
 		this.client = client;
-	}	
-	
+	}
+
 	public Cause getCause() {
 		return this.cause;
 	}
 
-	protected void setCause(Cause cause) {
+	public void setCause(final Cause cause) {
 		this.cause = cause;
 	}
-	
+
 }
