@@ -2,12 +2,14 @@
 package org.springframework.samples.petclinic.web;
 
 import java.time.LocalDate;
+import java.util.Collection;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.model.Cause;
 import org.springframework.samples.petclinic.model.Donation;
+import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.service.ClinicService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -34,8 +36,13 @@ public class DonationController {
 	}
 
 	@ModelAttribute("cause")
-	public Cause findOwner(@PathVariable("causeId") final int causeId) {
+	public Cause findCause(@PathVariable("causeId") final int causeId) {
 		return this.clinicService.findCauseById(causeId);
+	}
+
+	@ModelAttribute("clients")
+	public Collection<Owner> findOwners() {
+		return this.clinicService.findOwnerByLastName("");
 	}
 
 	@InitBinder("cause")
