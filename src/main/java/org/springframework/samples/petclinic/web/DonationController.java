@@ -40,6 +40,13 @@ public class DonationController {
 		return this.clinicService.findCauseById(causeId);
 	}
 
+	@ModelAttribute("maxDonation")
+	public Double findMaxDonation(@PathVariable("causeId") final int causeId) {
+		Cause cause = this.clinicService.findCauseById(causeId);
+		Double maxDonation = cause.getBudgetTarget() - cause.getTotalAmount();
+		return Math.round((maxDonation - 0.01) * 100.0) / 100.0;
+	}
+
 	@ModelAttribute("clients")
 	public Collection<Owner> findOwners() {
 		return this.clinicService.findOwnerByLastName("");
