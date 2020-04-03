@@ -35,8 +35,8 @@ In the retrospective meeting, the team has a discussion about those results.
 | Day           |   jorandmol   |   reyblacua    |   pabcubcru    |   cardobher    |   conmarred    |      mrf       |
 | ------------- | ------------- | -------------  | -------------  | -------------  | -------------  | -------------  |
 | 01/04         |   :smiley:    |                |                |   :smiley:     |                |                |
-| 02/04         |   :smiley:    |                |                |       -        |                |                |
-| 03/04         |               |                |                |                |                |                |
+| 02/04         |   :smiley:    |                |                |       -        |   :smiley:     |                |
+| 03/04         |               |                |                |                |   :smiley:     |                |
 | 04/04         |               |                |                |                |                |                |
 | 05/04         |               |                |                |                |                |                |
 | 06/04         |               |                |                |                |                |                |
