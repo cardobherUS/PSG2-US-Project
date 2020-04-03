@@ -70,7 +70,7 @@ public class DonationController {
 	public String processCreationForm(@ModelAttribute final Cause cause, @Valid final Donation donation, final BindingResult result, final ModelMap model) {
 		donation.setCause(cause);
 
-		if (cause.getTotalAmount() + donation.getAmount() >= cause.getBudgetTarget()) {
+		if (cause.getTotalAmount() + donation.getAmount() > cause.getBudgetTarget()) {
 			result.rejectValue("amount", "error.amount", "You cant exceed the budget target of the cause");
 		}
 		if (result.hasErrors()) {
@@ -79,9 +79,7 @@ public class DonationController {
 		} else {
 			this.clinicService.saveDonation(donation);
 			cause.addDonation(donation);
-			//if (cause.getBudgetTarget() <= this.clinicService.totalBudget(donation.getCause().getId())) {
 			this.clinicService.saveCause(cause);
-			//}
 			return "redirect:/causes";
 		}
 	}

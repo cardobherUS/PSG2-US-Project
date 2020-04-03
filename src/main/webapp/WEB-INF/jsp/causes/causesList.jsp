@@ -8,7 +8,7 @@
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
 <petclinic:layout pageName="announcements">
-    <h2>Announcements</h2>
+    <h2>Causes</h2>
 
     <table id="CausesTable" class="table table-striped">
         <thead>
@@ -27,7 +27,7 @@
                     <c:out value="${cause.name}"/>
                 </td>
                 <td>
-                   
+                   <c:out value="${cause.getTotalAmount()}"/>
                 </td>
 				<td>
                     <c:out value="${cause.budgetTarget}"/>
