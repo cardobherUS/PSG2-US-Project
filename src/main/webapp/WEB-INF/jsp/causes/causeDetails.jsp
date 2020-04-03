@@ -29,7 +29,13 @@
 	<h4>
 		<c:out value="${cause.organization}" />
 	</h4>
-	<br />
+	<br>
+	 <spring:url value="/causes/{causeId}/donations/new" var="danationUrl">
+                        <spring:param name="causeId" value="${cause.id}"/>
+                    </spring:url>
+                    <a class="btn btn-default" href="${fn:escapeXml(danationUrl)}"><c:out value="Donate"/></a>
+	<br><br>
+	<br>
 	<h2>Donations</h2>
 	<br />
 	<c:choose>
