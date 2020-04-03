@@ -23,7 +23,7 @@
              </div>
       		<form:hidden path="date"/>
             <petclinic:inputField label="Amount" name="amount"/>
-            <petclinic:inputField label="Client" name="client"/>
+            <petclinic:selectField label="Client" name="client" size="5" names="${clients}"/>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
