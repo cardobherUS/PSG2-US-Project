@@ -37,8 +37,8 @@ In the retrospective meeting, the team has a discussion about those results.
 | 01/04         |   :smiley:    |       -        |                |   :smiley:     |                |   :smiley:     |
 | 02/04         |   :smiley:    |       -        |                |       -        |   :smiley:     |   :smiley:     |
 | 03/04         | :neutral_face:|    :smiley:    |                |                |   :smiley:     | :neutral_face: |
-| 04/04         |               |                |                |                |                |                |
-| 05/04         |               |                |                |                |                |                |
+| 04/04         |       -       |                |                |                |                |                |
+| 05/04         |       -       |                |                |                |                |                |
 | 06/04         |               |                |                |                |                |                |
 | 07/04         |               |                |                |                |                |                |
 | 08/04         |               |                |                |                |                |                |
