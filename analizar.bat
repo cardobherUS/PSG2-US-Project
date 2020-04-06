@@ -1,0 +1,1 @@
+mvn sonar:sonar -Dsonar.projectKey=PSG2-1920-G7-73:spring-petclinic -Dsonar.host.url=http://oitilo.us.es:9000 -Dsonar.login=0ce78b709c2292a87b3928955275ba4c063c8010 
