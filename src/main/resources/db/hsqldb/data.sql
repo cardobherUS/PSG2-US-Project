@@ -1,9 +1,9 @@
-INSERT INTO vets VALUES (1, 'James', 'Carter');
-INSERT INTO vets VALUES (2, 'Helen', 'Leary');
-INSERT INTO vets VALUES (3, 'Linda', 'Douglas');
-INSERT INTO vets VALUES (4, 'Rafael', 'Ortega');
-INSERT INTO vets VALUES (5, 'Henry', 'Stevens');
-INSERT INTO vets VALUES (6, 'Sharon', 'Jenkins');
+INSERT INTO vets VALUES (1, 'James', 'Carter', '12345678A');
+INSERT INTO vets VALUES (2, 'Helen', 'Leary', '51445568E');
+INSERT INTO vets VALUES (3, 'Linda', 'Douglas', '64412623P');
+INSERT INTO vets VALUES (4, 'Rafael', 'Ortega', '78451239G');
+INSERT INTO vets VALUES (5, 'Henry', 'Stevens', '84512632Y');
+INSERT INTO vets VALUES (6, 'Sharon', 'Jenkins', '87445132Q');
 
 INSERT INTO specialties VALUES (1, 'radiology');
 INSERT INTO specialties VALUES (2, 'surgery');
@@ -22,16 +22,16 @@ INSERT INTO types VALUES (4, 'snake');
 INSERT INTO types VALUES (5, 'bird');
 INSERT INTO types VALUES (6, 'hamster');
 
-INSERT INTO owners VALUES (1, 'George', 'Franklin', '110 W. Liberty St.', 'Madison', '6085551023');
-INSERT INTO owners VALUES (2, 'Betty', 'Davis', '638 Cardinal Ave.', 'Sun Prairie', '6085551749');
-INSERT INTO owners VALUES (3, 'Eduardo', 'Rodriquez', '2693 Commerce St.', 'McFarland', '6085558763');
-INSERT INTO owners VALUES (4, 'Harold', 'Davis', '563 Friendly St.', 'Windsor', '6085553198');
-INSERT INTO owners VALUES (5, 'Peter', 'McTavish', '2387 S. Fair Way', 'Madison', '6085552765');
-INSERT INTO owners VALUES (6, 'Jean', 'Coleman', '105 N. Lake St.', 'Monona', '6085552654');
-INSERT INTO owners VALUES (7, 'Jeff', 'Black', '1450 Oak Blvd.', 'Monona', '6085555387');
-INSERT INTO owners VALUES (8, 'Maria', 'Escobito', '345 Maple St.', 'Madison', '6085557683');
-INSERT INTO owners VALUES (9, 'David', 'Schroeder', '2749 Blackhawk Trail', 'Madison', '6085559435');
-INSERT INTO owners VALUES (10, 'Carlos', 'Estaban', '2335 Independence La.', 'Waunakee', '6085555487');
+INSERT INTO owners VALUES (1, 'George', 'Franklin', '24576831A', '110 W. Liberty St.', 'Madison', '6085551023');
+INSERT INTO owners VALUES (2, 'Betty', 'Davis', '51241523H', '638 Cardinal Ave.', 'Sun Prairie', '6085551749');
+INSERT INTO owners VALUES (3, 'Eduardo', 'Rodriquez', '56143874J', '2693 Commerce St.', 'McFarland', '6085558763');
+INSERT INTO owners VALUES (4, 'Harold', 'Davis', '45684633Q', '563 Friendly St.', 'Windsor', '6085553198');
+INSERT INTO owners VALUES (5, 'Peter', 'McTavish', '53614289Ñ', '2387 S. Fair Way', 'Madison', '6085552765');
+INSERT INTO owners VALUES (6, 'Jean', 'Coleman', '46852098Y', '105 N. Lake St.', 'Monona', '6085552654');
+INSERT INTO owners VALUES (7, 'Jeff', 'Black', '53612474N', '1450 Oak Blvd.', 'Monona', '6085555387');
+INSERT INTO owners VALUES (8, 'Maria', 'Escobito', '84769526Y', '345 Maple St.', 'Madison', '6085557683');
+INSERT INTO owners VALUES (9, 'David', 'Schroeder', '63274264P', '2749 Blackhawk Trail', 'Madison', '6085559435');
+INSERT INTO owners VALUES (10, 'Carlos', 'Estaban', '65514641W', '2335 Independence La.', 'Waunakee', '6085555487');
 
 INSERT INTO pets VALUES (1, 'Leo', '2010-09-07', 1, 1);
 INSERT INTO pets VALUES (2, 'Basil', '2012-08-06', 6, 2);
@@ -51,3 +51,18 @@ INSERT INTO visits VALUES (1, 7, '2013-01-01', 'rabies shot');
 INSERT INTO visits VALUES (2, 8, '2013-01-02', 'rabies shot');
 INSERT INTO visits VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits VALUES (4, 7, '2013-01-04', 'spayed');
+
+INSERT INTO hotels VALUES (1, 'hotel1', '2020-05-10', '2020-05-12', 1);
+INSERT INTO hotels VALUES (2, 'hotel2', '2020-06-18', '2020-06-20', 7);
+INSERT INTO hotels VALUES (3, 'hotel3', '2020-10-25', '2020-10-25', 3);
+
+INSERT INTO causes VALUES (1,'Cause1','This is a description',500,'Organization1');
+INSERT INTO causes VALUES (2,'Cause2','This is a description',800,'Organization2');
+INSERT INTO causes VALUES (3,'Cause3','This is a description',1000,'Organization3');
+INSERT INTO causes VALUES (4,'Cause4','This is a description',1000,'Organization4');
+
+INSERT INTO donations VALUES (1,'Donation1', '53.52', '2020-03-22', 'Antonio', 1);
+INSERT INTO donations VALUES (2,'Donation2', '251.15', '2020-03-26','Francisco', 2);
+INSERT INTO donations VALUES (3,'Donation3','61.81', '2020-03-29','Octavio', 1);
+INSERT INTO donations VALUES (4,'Donation4', '824.13', '2020-02-02', 'Matilda', 3);
+INSERT INTO donations VALUES (5,'Donation5','523.241', '2020-02-02', 'Rosa', 4);
