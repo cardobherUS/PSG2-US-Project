@@ -78,7 +78,7 @@ public class Cause extends NamedEntity {
 	}
 
 	public Double getTotalAmount() {
-		Double answer = this.donations.stream().mapToDouble(d -> d.getAmount()).sum();
+		Double answer = this.donations.stream().mapToDouble(Donation::getAmount).sum();
 		return Math.round(answer * 100.0) / 100.0;
 	}
 
