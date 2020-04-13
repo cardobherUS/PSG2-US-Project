@@ -1,5 +1,7 @@
 package org.springframework.samples.petclinic.web;
 
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -51,17 +53,18 @@ public class HotelController {
 	}
 
 	@PostMapping(value = "/owners/{ownerId}/pets/{petId}/hotels/new")
-	public String processNewHotelForm(@Valid Hotel hotel, BindingResult result) {
+	public String processNewHotelForm(@Valid Hotel hotel, BindingResult result, @PathVariable("petId") int petId) {
 		if (hotel.getFinishDate() != null && hotel.getStartDate() != null) {
-			if (clinicService.canHotelBook(hotel.getPet().getId())) {
+			if (clinicService.canHotelBook(petId)) {
 				if (hotel.getFinishDate().isBefore(hotel.getStartDate())) {
 					result.rejectValue("finishDate", "wrongDate", "Finish date must be after than start date");
 				}
-				if (this.clinicService.findHotelsByPetId(hotel.getPet().getId()).size() == 1) {
-					Hotel h = this.clinicService.findHotelsByPetId(hotel.getPet().getId()).iterator().next();
-					boolean canCreate = h.getFinishDate().isBefore(hotel.getStartDate())
-							|| h.getStartDate().isAfter(hotel.getFinishDate());
-					if (!canCreate) {
+				Collection<Hotel> hotels = this.clinicService.findHotelsByPetId(petId);
+				if (hotels.size() == 1) {
+					Hotel differentHotel = hotels.iterator().next();
+					boolean canCreateHotelBook = differentHotel.getFinishDate().isBefore(hotel.getStartDate())
+							|| differentHotel.getStartDate().isAfter(hotel.getFinishDate());
+					if (!canCreateHotelBook) {
 						result.rejectValue("finishDate", "alreadyBookWithSameDates",
 								"There is a period that coincides with another hotel book");
 					}
