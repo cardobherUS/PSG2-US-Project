@@ -34,19 +34,19 @@ In the retrospective meeting, the team has a discussion about those results.
 
 | Day           |   jorandmol   |   reyblacua    |   pabcubcru    |   cardobher    |   conmarred    |     mruano     |
 | ------------- | ------------- | -------------  | -------------  | -------------  | -------------  | -------------  |
-| 01/04         |   :smiley:    |       -        |                |   :smiley:     |                |    :smiley:    |
-| 02/04         |   :smiley:    |       -        |                |       -        | :neutral_face: |    :smiley:    |
-| 03/04         | :neutral_face:|    :smiley:    |                |                |   :smiley:     | :neutral_face: |
-| 04/04         |       -       |       -        |                |                |       -        |       -        |
-| 05/04         |       -       |       -        |                |                |       -        |       -        |
-| 06/04         |   :smiley:    |    :smiley:    |                |                |                |    :smiley:    |
-| 07/04         |       -       |       -        |                |                |                |       -        |
-| 08/04         |       -       |    :smiley:    |                |                |                |    :smiley:    |
-| 09/04         |   :smiley:    |       -        |                |                |                |                |
-| 10/04         |       -       |       -        |                |                |                |                |
-| 11/04         |       -       |       -        |                |                |                |                |
-| 12/04         |       -       | :neutral_face: |                |                |                |                |
-| 13/04         |               |                |                |                |                |                |
+| 01/04         |   :smiley:    |       -        |       -        |   :smiley:     |                |    :smiley:    |
+| 02/04         |   :smiley:    |       -        |       -        |       -        | :neutral_face: |    :smiley:    |
+| 03/04         | :neutral_face:|    :smiley:    |    :smiley:    |                |   :smiley:     | :neutral_face: |
+| 04/04         |       -       |       -        |       -        |                |       -        |       -        |
+| 05/04         |       -       |       -        |       -        |                |       -        |       -        |
+| 06/04         |   :smiley:    |    :smiley:    |    :smiley:    |                |                |    :smiley:    |
+| 07/04         |       -       |       -        |       -        |                |                |       -        |
+| 08/04         |       -       |    :smiley:    |       -        |                |                |    :smiley:    |
+| 09/04         |   :smiley:    |       -        |       -        |                |                |                |
+| 10/04         |       -       |       -        |       -        |                |                |                |
+| 11/04         |       -       |       -        |       -        |                |                |                |
+| 12/04         |       -       | :neutral_face: |       -        |                |                |                |
+| 13/04         |               |                |    :smiley:    |                |                |                |
 | 14/04         |               |                |                |                |                |                |
 | 15/04         |               |                |                |                |                |                |
 ...
