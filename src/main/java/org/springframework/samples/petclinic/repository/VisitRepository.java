@@ -2,7 +2,7 @@
 /*
  * Copyright 2002-2013 the original author or authors.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -18,7 +18,6 @@ package org.springframework.samples.petclinic.repository;
 
 import java.util.List;
 
-import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.samples.petclinic.model.BaseEntity;
@@ -42,10 +41,10 @@ public interface VisitRepository extends CrudRepository<Visit, Integer>{
 	 * @param visit the <code>Visit</code> to save
 	 * @see BaseEntity#isNew
 	 */
-	List<Visit> findByPetId(Integer petId) throws DataAccessException;
+	List<Visit> findByPetId(Integer petId);
 
 	@Query("select v from Visit v where v.id=?1")
-	Visit findVisitByPetId(int petId) throws DataAccessException;
+	Visit findVisitByPetId(int petId);
 
-	Visit findById(int vetId) throws DataAccessException;
+	Visit findById(int vetId);
 }

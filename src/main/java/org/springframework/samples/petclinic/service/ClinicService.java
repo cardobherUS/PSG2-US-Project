@@ -2,7 +2,7 @@
 /*
  * Copyright 2002-2013 the original author or authors.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
+ * Licensed under the Apache License, Version 2.0 (the "License")
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
@@ -21,7 +21,6 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
-import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Cause;
 import org.springframework.samples.petclinic.model.Donation;
 import org.springframework.samples.petclinic.model.Hotel;
@@ -78,50 +77,50 @@ public class ClinicService {
 	}
 
 	@Transactional(readOnly = true)
-	public Collection<PetType> findPetTypes() throws DataAccessException {
+	public Collection<PetType> findPetTypes() {
 		return this.petRepository.findPetTypes();
 	}
 
 	@Transactional(readOnly = true)
-	public Owner findOwnerById(final int id) throws DataAccessException {
+	public Owner findOwnerById(final int id) {
 		return this.ownerRepository.findById(id);
 	}
 
 	@Transactional(readOnly = true)
-	public Collection<Owner> findOwnerByLastName(final String lastName) throws DataAccessException {
+	public Collection<Owner> findOwnerByLastName(final String lastName) {
 		return this.ownerRepository.findByLastName(lastName);
 	}
 
 	@Transactional
-	public void saveOwner(final Owner owner) throws DataAccessException {
+	public void saveOwner(final Owner owner) {
 		this.ownerRepository.save(owner);
 	}
 
 	@Transactional
-	public void deletePet(final Pet pet) throws DataAccessException {
+	public void deletePet(final Pet pet) {
 		this.visitRepository.deleteAll(pet.getVisits());
 		this.hotelRepository.deleteAll(pet.getHotels());
 		this.petRepository.delete(pet);
 	}
 
 	@Transactional
-	public void saveVisit(final Visit visit) throws DataAccessException {
+	public void saveVisit(final Visit visit) {
 		this.visitRepository.save(visit);
 	}
 
 	@Transactional(readOnly = true)
-	public Pet findPetById(final int id) throws DataAccessException {
+	public Pet findPetById(final int id) {
 		return this.petRepository.findById(id);
 	}
 
 	@Transactional
-	public void savePet(final Pet pet) throws DataAccessException {
+	public void savePet(final Pet pet) {
 		this.petRepository.save(pet);
 	}
 
 	@Transactional(readOnly = true)
 	@Cacheable(value = "vets")
-	public Collection<Vet> findVets() throws DataAccessException {
+	public Collection<Vet> findVets() {
 		return this.vetRepository.findAll();
 	}
 
@@ -130,7 +129,7 @@ public class ClinicService {
 	}
 
 	@Transactional
-	public void saveVet(final Vet vet) throws DataAccessException {
+	public void saveVet(final Vet vet) {
 		this.vetRepository.save(vet);
 	}
 
@@ -139,12 +138,12 @@ public class ClinicService {
 	}
 
 	@Transactional(readOnly = true)
-	public Collection<Specialty> findSpecialities() throws DataAccessException {
+	public Collection<Specialty> findSpecialities() {
 		return this.vetRepository.findSpecialityTypes();
 	}
 
 	@Transactional
-	public void saveHotel(final Hotel hotel) throws DataAccessException {
+	public void saveHotel(final Hotel hotel) {
 		this.hotelRepository.save(hotel);
 	}
 
@@ -201,7 +200,7 @@ public class ClinicService {
 	}
 
 	@Transactional
-	public void saveCause(final Cause cause) throws DataAccessException {
+	public void saveCause(final Cause cause) {
 		this.causeRepository.save(cause);
 	}
 
@@ -213,7 +212,7 @@ public class ClinicService {
 		return this.causeRepository.totalBudget(causeId);
 	}
 
-	public void saveDonation(final Donation donation) throws DataAccessException {
+	public void saveDonation(final Donation donation) {
 		this.donationRepository.save(donation);
 	}
 }
