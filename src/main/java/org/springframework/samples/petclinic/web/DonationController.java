@@ -12,11 +12,10 @@ import org.springframework.samples.petclinic.model.Donation;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.service.ClinicService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,63 +24,70 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/causes/{causeId}")
 public class DonationController {
-
-	private static final String	VIEWS_DONATION_CREATE_OR_UPDATE_FORM	= "donations/createOrUpdateDonationForm";
-	private final ClinicService	clinicService;
-
-
+	
+	public ClinicService clinicService;
+	
 	@Autowired
-	public DonationController(final ClinicService clinicService) {
+	public DonationController(ClinicService clinicService) {
 		this.clinicService = clinicService;
 	}
-
-	@ModelAttribute("cause")
-	public Cause findCause(@PathVariable("causeId") final int causeId) {
-		return this.clinicService.findCauseById(causeId);
+	
+	@GetMapping("/donations/new")
+	public String initDonationForm(@PathVariable("causeId") final int causeId, Model model) {
+		
+		Collection<Owner> clients = this.clinicService.findOwnerByLastName("");
+		
+		Donation donation = new Donation();
+		donation.setDate(LocalDate.now());
+		
+		model.addAttribute("donation",donation);
+		model.addAttribute("clients",clients);
+		model.addAttribute("maxDonation",findMaxDonation(causeId));
+		
+		return "donations/createOrUpdateDonationForm";
 	}
+	
+	@PostMapping("/donations/new")
+	public String processDonationForm(@Valid Donation donation, BindingResult result,@PathVariable("causeId") final int causeId, ModelMap model) {
+		
+		Cause cause = this.clinicService.findCauseById(causeId);
+		donation.setCause(cause);
 
-	@ModelAttribute("maxDonation")
-	public Double findMaxDonation(@PathVariable("causeId") final int causeId) {
+		if (result.hasErrors()) {
+			
+			Collection<Owner> clients = this.clinicService.findOwnerByLastName("");
+			
+			model.put("donation", donation);
+			model.put("clients", clients);
+			model.addAttribute("maxDonation",findMaxDonation(causeId));
+			
+			return "donations/createOrUpdateDonationForm";
+		} else {
+			try {
+				this.clinicService.saveDonation(donation, cause);
+				
+			}catch(Exception ex) {
+				
+				Collection<Owner> clients = this.clinicService.findOwnerByLastName("");
+				
+				model.put("clients", clients);
+				model.addAttribute("maxDonation",findMaxDonation(causeId));
+				
+				result.rejectValue("amount", "error.amount", "You cant exceed the budget target of the cause");
+				
+				return "donations/createOrUpdateDonationForm";
+			}
+			return "redirect:/causes";
+		}
+	
+	}
+	
+	//Derivated methods
+	public Double findMaxDonation(int causeId) {
 		Cause cause = this.clinicService.findCauseById(causeId);
 		Double maxDonation = cause.getBudgetTarget() - cause.getTotalAmount();
 		return Math.round((maxDonation - 0.01) * 100.0) / 100.0;
+		//return maxDonation;
 	}
-
-	@ModelAttribute("clients")
-	public Collection<Owner> findOwners() {
-		return this.clinicService.findOwnerByLastName("");
-	}
-
-	@InitBinder("cause")
-	public void initCauseBinder(final WebDataBinder dataBinder) {
-		dataBinder.setDisallowedFields("id");
-	}
-
-	@GetMapping(value = "/donations/new")
-	public String initCreationForm(final Cause cause, final ModelMap model) {
-		Donation donation = new Donation();
-		cause.addDonation(donation);
-		donation.setDate(LocalDate.now());
-		model.put("donation", donation);
-		return DonationController.VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
-	}
-
-	@PostMapping(value = "/donations/new")
-	public String processCreationForm(@ModelAttribute final Cause cause, @Valid final Donation donation, final BindingResult result, final ModelMap model) {
-		donation.setCause(cause);
-
-		if (cause.getTotalAmount() + donation.getAmount() > cause.getBudgetTarget()) {
-			result.rejectValue("amount", "error.amount", "You cant exceed the budget target of the cause");
-		}
-		if (result.hasErrors()) {
-			model.put("donation", donation);
-			return DonationController.VIEWS_DONATION_CREATE_OR_UPDATE_FORM;
-		} else {
-			this.clinicService.saveDonation(donation);
-			cause.addDonation(donation);
-			this.clinicService.saveCause(cause);
-			return "redirect:/causes";
-		}
-	}
-
+	
 }
