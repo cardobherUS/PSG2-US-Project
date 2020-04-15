@@ -100,6 +100,7 @@ public class ClinicService {
 	public void deletePet(final Pet pet) {
 		this.visitRepository.deleteAll(pet.getVisits());
 		this.hotelRepository.deleteAll(pet.getHotels());
+		pet.getOwner().deletePet(pet);
 		this.petRepository.delete(pet);
 	}
 
