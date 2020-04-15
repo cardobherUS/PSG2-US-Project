@@ -18,7 +18,6 @@ package org.springframework.samples.petclinic.repository.springdatajpa;
 
 import java.util.List;
 
-import org.springframework.dao.DataAccessException;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.Repository;
 import org.springframework.samples.petclinic.model.Specialty;
@@ -36,12 +35,12 @@ public interface SpringDataVetRepository extends VetRepository, Repository<Vet, 
 
 	@Override
 	@Query("SELECT spec FROM Specialty spec ORDER BY spec.name")
-	List<Specialty> findSpecialityTypes() throws DataAccessException;
+	List<Specialty> findSpecialityTypes();
 
 	@Override
 	@Transactional
 	@Query("SELECT vet FROM Vet vet WHERE vet.id=?1")
-	Vet findVetById(int id) throws DataAccessException;
+	Vet findVetById(int id);
 	
 	@Query("select count(v)>0 from Vet v where v.dni = ?1")
 	boolean isDuplicatedDniVet(String dni);
