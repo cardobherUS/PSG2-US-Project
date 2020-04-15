@@ -50,7 +50,7 @@ class VisitControllerTests {
 	}
 
 	@WithMockUser(value = "spring")
-        @Test
+    @Test
 	void testProcessNewVisitFormSuccess() throws Exception {
 		mockMvc.perform(post("/owners/*/pets/{petId}/visits/new", TEST_PET_ID).param("name", "George")
 				.param("description", "Visit Description"))                                

@@ -1,7 +1,7 @@
 package org.springframework.samples.petclinic.web;
 
 import java.util.Collection;
-import java.util.List;
+
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -56,19 +56,8 @@ public class HotelController {
 	public String processNewHotelForm(@Valid Hotel hotel, BindingResult result, @PathVariable("petId") int petId) {
 		if (hotel.getFinishDate() != null && hotel.getStartDate() != null) {
 			if (clinicService.canHotelBook(petId)) {
-				if (hotel.getFinishDate().isBefore(hotel.getStartDate())) {
-					result.rejectValue("finishDate", "wrongDate", "Finish date must be after than start date");
-				}
-				Collection<Hotel> hotels = this.clinicService.findHotelsByPetId(petId);
-				if (hotels.size() == 1) {
-					Hotel differentHotel = hotels.iterator().next();
-					boolean canCreateHotelBook = differentHotel.getFinishDate().isBefore(hotel.getStartDate())
-							|| differentHotel.getStartDate().isAfter(hotel.getFinishDate());
-					if (!canCreateHotelBook) {
-						result.rejectValue("finishDate", "alreadyBookWithSameDates",
-								"There is a period that coincides with another hotel book");
-					}
-				}
+				compruebaFechas(result, hotel);
+				compruebaPeriodosDiferentesReservas(result, hotel, petId);
 			} else {
 				return "/exception";
 			}
@@ -80,6 +69,25 @@ public class HotelController {
 			return "redirect:/owners/{ownerId}";
 		}
 	}
+	
+	public void compruebaFechas(BindingResult result, Hotel hotel) {
+		if (hotel.getFinishDate().isBefore(hotel.getStartDate())) {
+			result.rejectValue("finishDate", "wrongDate", "Finish date must be after than start date");
+		}
+	}
+	
+	public void compruebaPeriodosDiferentesReservas(BindingResult result, Hotel hotel, int petId) {
+		Collection<Hotel> hotels = this.clinicService.findHotelsByPetId(petId);
+		if (hotels.size() == 1) {
+			Hotel differentHotel = hotels.iterator().next();
+			boolean canCreateHotelBook = differentHotel.getFinishDate().isBefore(hotel.getStartDate())
+					|| differentHotel.getStartDate().isAfter(hotel.getFinishDate());
+			if (!canCreateHotelBook) {
+				result.rejectValue("finishDate", "alreadyBookWithSamePeriod",
+						"There is a period that coincides with another hotel book");
+			}
+		}
+	}
 
 	@GetMapping(value = "/owners/*/pets/{petId}/hotels")
 	public String showHotels(@PathVariable int petId, Map<String, Object> model) {
@@ -88,12 +96,12 @@ public class HotelController {
 	}
 
 	@GetMapping("/owners/{ownerId}/pets/{petId}/hotels/{hotelId}/delete")
-	public String processDelete(@PathVariable("ownerId") int ownerId, @PathVariable("petId") int petId,
+	public String processDelete(@PathVariable("petId") int petId,
 			@PathVariable("hotelId") int hotelId, ModelMap model) {
 		Pet pet = this.clinicService.findPetById(petId);
-		Hotel hotel = this.clinicService.findHotelByPetId(hotelId);
+		Hotel hotel = this.clinicService.findHotelById(hotelId);
 		pet.deleteHotel(hotel);
 		this.clinicService.deleteHotel(hotel);
-		return "redirect:/owners/" + ownerId;
+		return "redirect:/owners/{ownerId}";
 	}
 }
