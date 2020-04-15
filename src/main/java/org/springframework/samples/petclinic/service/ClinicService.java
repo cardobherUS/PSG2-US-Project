@@ -178,7 +178,7 @@ public class ClinicService {
 		this.hotelRepository.delete(hotel);
 	}
 
-	public Hotel findHotelByPetId(final int hotelId) {
+	public Hotel findHotelById(final int hotelId) {
 		return this.hotelRepository.findById(hotelId);
 	}
 
