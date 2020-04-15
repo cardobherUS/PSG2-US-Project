@@ -39,11 +39,12 @@
                     <a href="${fn:escapeXml(CauseUrl)}">Show Details</a>
                 </td>    
                  <td>    
-                 	         
+                 	<c:if test="${cause.totalAmount<cause.budgetTarget }">     
                     <spring:url value="/causes/{causeId}/donations/new" var="danationUrl">
                         <spring:param name="causeId" value="${cause.id}"/>
                     </spring:url>
                     <a href="${fn:escapeXml(danationUrl)}"><c:out value="Donate"/></a>
+                    </c:if>
                 </td>       
             </tr>
         </c:forEach>
