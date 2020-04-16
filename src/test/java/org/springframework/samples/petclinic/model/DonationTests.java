@@ -33,11 +33,6 @@ public class DonationTests {
 		donation.setName("Donation 1");
 	}
 	
-//	@Test
-//	void shouldGetDescription() {
-//		assertThat(cause.getDescription()).isEqualTo("This is a description...");
-//	}
-	
 	@Test
 	void shouldGetAmount() {
 		assertThat(donation.getAmount()).isEqualTo(18.0);
