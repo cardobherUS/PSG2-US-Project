@@ -21,6 +21,7 @@ import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.samples.petclinic.exceptions.BudgetMaximumException;
 import org.springframework.samples.petclinic.model.Cause;
 import org.springframework.samples.petclinic.model.Donation;
 import org.springframework.samples.petclinic.model.Hotel;
@@ -100,6 +101,7 @@ public class ClinicService {
 	public void deletePet(final Pet pet) {
 		this.visitRepository.deleteAll(pet.getVisits());
 		this.hotelRepository.deleteAll(pet.getHotels());
+		pet.getOwner().deletePet(pet);
 		this.petRepository.delete(pet);
 	}
 
@@ -178,7 +180,7 @@ public class ClinicService {
 		this.hotelRepository.delete(hotel);
 	}
 
-	public Hotel findHotelByPetId(final int hotelId) {
+	public Hotel findHotelById(final int hotelId) {
 		return this.hotelRepository.findById(hotelId);
 	}
 
@@ -212,7 +214,11 @@ public class ClinicService {
 		return this.causeRepository.totalBudget(causeId);
 	}
 
-	public void saveDonation(final Donation donation) {
+	public void saveDonation(final Donation donation, Cause cause) throws BudgetMaximumException {
+		if(donation.getAmount()+cause.getTotalAmount()>cause.getBudgetTarget()) {
+			throw new BudgetMaximumException();
+		}else {
 		this.donationRepository.save(donation);
+		}
 	}
 }
