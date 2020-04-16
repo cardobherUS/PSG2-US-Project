@@ -26,6 +26,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.samples.petclinic.exceptions.BudgetMaximumException;
 import org.springframework.samples.petclinic.model.Cause;
 import org.springframework.samples.petclinic.model.Donation;
 import org.springframework.samples.petclinic.model.Hotel;
@@ -262,7 +263,6 @@ public class ClinicServiceTests {
 		Pet pet = this.clinicService.findPetById(1);
 
 		Hotel hotel = new Hotel();
-		hotel.setName("Hotel");
 		hotel.setPet(pet);
 		hotel.setStartDate(LocalDate.of(2020, 07, 20));
 		hotel.setFinishDate(LocalDate.of(2020, 07, 25));
@@ -320,7 +320,7 @@ public class ClinicServiceTests {
 
 	@Test
 	public void shouldDeleteHotel() {
-		Hotel hotel = this.clinicService.findHotelByPetId(1);
+		Hotel hotel = this.clinicService.findHotelById(1);
 		Collection<Hotel> hotelsIni = this.clinicService.findHotelsByPetId(1);
 		int tamInicial = hotelsIni.size();
 		this.clinicService.deleteHotel(hotel);
@@ -330,8 +330,7 @@ public class ClinicServiceTests {
 
 	@Test
 	void shouldFindHotel() {
-		Hotel hotel = this.clinicService.findHotelByPetId(1);
-		Assertions.assertThat(hotel.getName()).isEqualTo("hotel1");
+		Hotel hotel = this.clinicService.findHotelById(1);
 		Assertions.assertThat(hotel.getFinishDate()).isEqualTo("2020-05-12");
 		Assertions.assertThat(hotel.getStartDate()).isEqualTo("2020-05-10");
 		Assertions.assertThat(hotel.getPet()).isNotNull();
@@ -446,7 +445,12 @@ public class ClinicServiceTests {
 		donation.setDate(LocalDate.of(2020, 03, 14));
 		donation.setName("Donation");
 
-		this.clinicService.saveDonation(donation);
+		try {
+			this.clinicService.saveDonation(donation,cause);
+		} catch (BudgetMaximumException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Assertions.assertThat(donation.getId().longValue()).isNotEqualTo(0);
 
 		donations = this.clinicService.findAllDonationsByCauseId(1);
