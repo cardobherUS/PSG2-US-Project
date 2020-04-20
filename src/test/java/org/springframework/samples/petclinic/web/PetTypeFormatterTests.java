@@ -16,7 +16,6 @@ import java.util.Collection;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
 /**
  * Test class for {@link PetTypeFormatter}
