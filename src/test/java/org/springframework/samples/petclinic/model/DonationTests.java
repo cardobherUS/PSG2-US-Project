@@ -25,7 +25,7 @@ public class DonationTests {
 		cause.setOrganization("Organization");
 		
 		donation = new Donation();
-		donation.setAmount(18.0);
+		donation.setAmount(18);
 		donation.setCause(cause);
 		donation.setClient("Client 1");
 		donation.setDate(LocalDate.of(2020, 01, 21));
@@ -35,7 +35,7 @@ public class DonationTests {
 	
 	@Test
 	void shouldGetAmount() {
-		assertThat(donation.getAmount()).isEqualTo(18.0);
+		assertThat(donation.getAmount()).isEqualTo(18);
 	}
 	
 	@Test

@@ -26,7 +26,7 @@ INSERT INTO owners VALUES (1, 'George', 'Franklin', '24576831A', '110 W. Liberty
 INSERT INTO owners VALUES (2, 'Betty', 'Davis', '51241523H', '638 Cardinal Ave.', 'Sun Prairie', '6085551749');
 INSERT INTO owners VALUES (3, 'Eduardo', 'Rodriquez', '56143874J', '2693 Commerce St.', 'McFarland', '6085558763');
 INSERT INTO owners VALUES (4, 'Harold', 'Davis', '45684633Q', '563 Friendly St.', 'Windsor', '6085553198');
-INSERT INTO owners VALUES (5, 'Peter', 'McTavish', '53614289Ñ', '2387 S. Fair Way', 'Madison', '6085552765');
+INSERT INTO owners VALUES (5, 'Peter', 'McTavish', '53614289N', '2387 S. Fair Way', 'Madison', '6085552765');
 INSERT INTO owners VALUES (6, 'Jean', 'Coleman', '46852098Y', '105 N. Lake St.', 'Monona', '6085552654');
 INSERT INTO owners VALUES (7, 'Jeff', 'Black', '53612474N', '1450 Oak Blvd.', 'Monona', '6085555387');
 INSERT INTO owners VALUES (8, 'Maria', 'Escobito', '84769526Y', '345 Maple St.', 'Madison', '6085557683');
@@ -61,8 +61,8 @@ INSERT INTO causes VALUES (2,'Cause2','This is a description',800,'Organization2
 INSERT INTO causes VALUES (3,'Cause3','This is a description',1000,'Organization3');
 INSERT INTO causes VALUES (4,'Cause4','This is a description',1000,'Organization4');
 
-INSERT INTO donations VALUES (1,'Donation1', '53.52', '2020-03-22', 'Antonio', 1);
-INSERT INTO donations VALUES (2,'Donation2', '251.15', '2020-03-26','Francisco', 2);
-INSERT INTO donations VALUES (3,'Donation3','61.81', '2020-03-29','Octavio', 1);
-INSERT INTO donations VALUES (4,'Donation4', '824.13', '2020-02-02', 'Matilda', 3);
-INSERT INTO donations VALUES (5,'Donation5','523.241', '2020-02-02', 'Rosa', 4);
+INSERT INTO donations VALUES (1,'Donation1', '53', '2020-03-22', 'Antonio', 1);
+INSERT INTO donations VALUES (2,'Donation2', '251', '2020-03-26','Francisco', 2);
+INSERT INTO donations VALUES (3,'Donation3','61', '2020-03-29','Octavio', 1);
+INSERT INTO donations VALUES (4,'Donation4', '824', '2020-02-02', 'Matilda', 3);
+INSERT INTO donations VALUES (5,'Donation5','523', '2020-02-02', 'Rosa', 4);
