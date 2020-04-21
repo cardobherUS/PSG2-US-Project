@@ -210,7 +210,7 @@ public class ClinicService {
 		return this.causeRepository.findCauseWithName(name).orElse(null) != null;
 	}
 
-	public Double totalBudget(final int causeId) {
+	public Integer totalBudget(final int causeId) {
 		return this.causeRepository.totalBudget(causeId);
 	}
 

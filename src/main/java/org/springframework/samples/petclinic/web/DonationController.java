@@ -40,6 +40,7 @@ public class DonationController {
 		Donation donation = new Donation();
 		donation.setDate(LocalDate.now());
 		
+		model.addAttribute("cause",this.clinicService.findCauseById(causeId));
 		model.addAttribute("donation",donation);
 		model.addAttribute("clients",clients);
 		model.addAttribute("maxDonation",findMaxDonation(causeId));
@@ -73,7 +74,7 @@ public class DonationController {
 				model.put("clients", clients);
 				model.addAttribute("maxDonation",findMaxDonation(causeId));
 				
-				result.rejectValue("amount", "error.amount", "You cant exceed the budget target of the cause");
+				result.rejectValue("amount", "error.amount", "You can't exceed the budget target of the cause");
 				
 				return "donations/createOrUpdateDonationForm";
 			}
@@ -83,10 +84,9 @@ public class DonationController {
 	}
 	
 	//Derivated methods
-	public Double findMaxDonation(int causeId) {
+	public Integer findMaxDonation(int causeId) {
 		Cause cause = this.clinicService.findCauseById(causeId);
-		Double maxDonation = cause.getBudgetTarget() - cause.getTotalAmount();
-		return Math.round((maxDonation - 0.01) * 100.0) / 100.0;
+		return cause.getBudgetTarget() - cause.getTotalAmount();
 		//return maxDonation;
 	}
 	

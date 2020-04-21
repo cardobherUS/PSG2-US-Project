@@ -30,10 +30,15 @@
 		<c:out value="${cause.organization}" />
 	</h4>
 	<br>
-	 <spring:url value="/causes/{causeId}/donations/new" var="danationUrl">
-                        <spring:param name="causeId" value="${cause.id}"/>
-                    </spring:url>
-                    <a class="btn btn-default" href="${fn:escapeXml(danationUrl)}"><c:out value="Donate"/></a>
+	<c:if test="${cause.totalAmount<cause.budgetTarget }">
+	 	<spring:url value="/causes/{causeId}/donations/new" var="danationUrl">
+       	<spring:param name="causeId" value="${cause.id}"/>
+        </spring:url>
+        <a class="btn btn-default" href="${fn:escapeXml(danationUrl)}"><c:out value="Donate"/></a>
+    </c:if>
+    <c:if test="${cause.totalAmount==cause.budgetTarget }">
+    <h2>This cause is already closed</h2>
+    </c:if>
 	<br><br>
 	<br>
 	<h2>Donations</h2>
