@@ -26,7 +26,7 @@ INSERT INTO owners VALUES (1, 'George', 'Franklin', '24576831A', '110 W. Liberty
 INSERT INTO owners VALUES (2, 'Betty', 'Davis', '51241523H', '638 Cardinal Ave.', 'Sun Prairie', '6085551749');
 INSERT INTO owners VALUES (3, 'Eduardo', 'Rodriquez', '56143874J', '2693 Commerce St.', 'McFarland', '6085558763');
 INSERT INTO owners VALUES (4, 'Harold', 'Davis', '45684633Q', '563 Friendly St.', 'Windsor', '6085553198');
-INSERT INTO owners VALUES (5, 'Peter', 'McTavish', '53614289Ñ', '2387 S. Fair Way', 'Madison', '6085552765');
+INSERT INTO owners VALUES (5, 'Peter', 'McTavish', '53614289N', '2387 S. Fair Way', 'Madison', '6085552765');
 INSERT INTO owners VALUES (6, 'Jean', 'Coleman', '46852098Y', '105 N. Lake St.', 'Monona', '6085552654');
 INSERT INTO owners VALUES (7, 'Jeff', 'Black', '53612474N', '1450 Oak Blvd.', 'Monona', '6085555387');
 INSERT INTO owners VALUES (8, 'Maria', 'Escobito', '84769526Y', '345 Maple St.', 'Madison', '6085557683');
