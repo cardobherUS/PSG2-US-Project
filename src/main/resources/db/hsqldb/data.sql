@@ -61,8 +61,8 @@ INSERT INTO causes VALUES (2,'Cause2','This is a description',800,'Organization2
 INSERT INTO causes VALUES (3,'Cause3','This is a description',1000,'Organization3');
 INSERT INTO causes VALUES (4,'Cause4','This is a description',1000,'Organization4');
 
-INSERT INTO donations VALUES (1,'Donation1', '53.52', '2020-03-22', 'Antonio', 1);
-INSERT INTO donations VALUES (2,'Donation2', '251.15', '2020-03-26','Francisco', 2);
-INSERT INTO donations VALUES (3,'Donation3','61.81', '2020-03-29','Octavio', 1);
-INSERT INTO donations VALUES (4,'Donation4', '824.13', '2020-02-02', 'Matilda', 3);
-INSERT INTO donations VALUES (5,'Donation5','523.241', '2020-02-02', 'Rosa', 4);
+INSERT INTO donations VALUES (1,'Donation1', '53', '2020-03-22', 'Antonio', 1);
+INSERT INTO donations VALUES (2,'Donation2', '251', '2020-03-26','Francisco', 2);
+INSERT INTO donations VALUES (3,'Donation3','61', '2020-03-29','Octavio', 1);
+INSERT INTO donations VALUES (4,'Donation4', '824', '2020-02-02', 'Matilda', 3);
+INSERT INTO donations VALUES (5,'Donation5','523', '2020-02-02', 'Rosa', 4);

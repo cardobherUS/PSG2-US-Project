@@ -20,8 +20,8 @@ public class Donation extends NamedEntity {
 
 	@NotNull
 	@Column(name = "amount")
-	@Min(0)
-	private Double		amount;
+	@Min(1)
+	private Integer		amount;
 
 	@NotNull
 	@Column(name = "donation_date")
@@ -37,11 +37,11 @@ public class Donation extends NamedEntity {
 	private Cause		cause;
 
 
-	public Double getAmount() {
+	public Integer getAmount() {
 		return this.amount;
 	}
 
-	public void setAmount(final Double amount) {
+	public void setAmount(final Integer amount) {
 		this.amount = amount;
 	}
 
