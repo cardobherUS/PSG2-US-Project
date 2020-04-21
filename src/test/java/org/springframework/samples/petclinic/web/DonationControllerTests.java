@@ -48,7 +48,7 @@ public class DonationControllerTests {
 		c.setOrganization("O1");
 		
 		Donation d1 = new Donation();
-		d1.setAmount(25.0);
+		d1.setAmount(25);
 		d1.setCause(c);
 		
 		c.addDonation(d1);
@@ -78,7 +78,7 @@ public class DonationControllerTests {
         	
         	mockMvc.perform(post("/causes/{causeId}/donations/new" , TEST_CAUSE_ID)
         	.with(csrf())
-        	.param("amount","25.0")
+        	.param("amount","25")
         	.param("client","Enrique2")
         	.param("date","2020/04/15"))
         	.andExpect(status().is3xxRedirection())

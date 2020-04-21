@@ -387,9 +387,9 @@ public class ClinicServiceTests {
 
 	@Test
 	void shouldTotalBudget() {
-		Double res = this.clinicService.totalBudget(1) * 100;
-		res = (double) (Math.round(res) / 100);
-		Assertions.assertThat(res).isEqualTo(115.0);
+		Integer res = this.clinicService.totalBudget(1);
+		
+		Assertions.assertThat(res).isEqualTo(114);
 	}
 
 	@Test
@@ -439,7 +439,7 @@ public class ClinicServiceTests {
 		Cause cause = this.clinicService.findCauseById(1);
 
 		Donation donation = new Donation();
-		donation.setAmount(20.0);
+		donation.setAmount(20);
 		donation.setCause(cause);
 		donation.setClient("George");
 		donation.setDate(LocalDate.of(2020, 03, 14));

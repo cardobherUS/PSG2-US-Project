@@ -27,6 +27,6 @@ public interface CauseRepository extends CrudRepository<Cause, Integer> {
 	Optional<Cause> findCauseWithName(String name);
 
 	@Query("SELECT sum(d.amount) FROM Donation d where d.cause.id=:causeId")
-	Double totalBudget(@Param(value = "causeId") int causeId);
+	Integer totalBudget(@Param(value = "causeId") int causeId);
 
 }
