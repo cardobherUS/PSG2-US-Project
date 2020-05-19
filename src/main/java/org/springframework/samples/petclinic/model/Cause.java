@@ -79,7 +79,12 @@ public class Cause extends NamedEntity {
 
 	public Integer getTotalAmount() {
 		return this.donations.stream().mapToInt(Donation::getAmount).sum();
-		
+
+	}
+
+	public Integer getTotalAmountMultipliedBy2() {
+		return this.donations.stream().mapToInt(d -> d.getAmount() * 2).sum();
+
 	}
 
 	public void addDonation(final Donation donation) {
