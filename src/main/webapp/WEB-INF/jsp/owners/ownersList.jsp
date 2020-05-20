@@ -42,7 +42,7 @@
                 </td>
                 <td>
                     <c:forEach var="pet" items="${owner.pets}">
-                        <c:out value="${pet.name} "/>
+                        <c:out value="${pet.name}, "/>
                     </c:forEach>
                 </td>
             </tr>
