@@ -49,6 +49,7 @@ public class Owner extends Person {
 
 	@Column(name = "address")
 	@NotEmpty
+	@Pattern(regexp = "^([a-zA-Z]){3}")
 	private String address;
 
 	@Column(name = "city")
@@ -57,7 +58,7 @@ public class Owner extends Person {
 
 	@Column(name = "telephone")
 	@NotEmpty
-	@Pattern(regexp = "^(\\+34|0034|34)?[6|7|9][0-9]{8}$")
+	@Pattern(regexp = "^(\\+34|0034|34)?[ ]*(6|7|9)([0-9]){8}$")
 	private String telephone;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "owner")
