@@ -49,6 +49,7 @@ public class Owner extends Person {
 
 	@Column(name = "address")
 	@NotEmpty
+	@Pattern(regexp = "^([a-zA-Z]){3}$")
 	private String address;
 
 	@Column(name = "city")
