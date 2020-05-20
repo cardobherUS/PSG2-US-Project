@@ -1,34 +1,52 @@
 <%@ page session="false" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="petclinic" tagdir="/WEB-INF/tags" %>
 
 <petclinic:layout pageName="owners">
+    <h2>Owners</h2>
 
-    <h2>Find Owners</h2>
-
-    
-    <form:form modelAttribute="owner" action="/owners" method="get" class="form-horizontal"
-               id="search-owner-form">
-        <div class="form-group">
-            <div class="control-group" id="lastName">
-                <label class="col-sm-2 control-label">Last name </label>
-                <div class="col-sm-10">
-                    <form:input class="form-control" path="lastName" size="30" maxlength="80"/>
-                    <span class="help-inline"><form:errors path="*"/></span>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-default">Find Owner</button>
-            </div>
-        </div>
-
-    </form:form>
-
-    <br/>
-    <a class="btn btn-default" href='<spring:url value="/owners/new" htmlEscape="true"/>'>Add Owner</a>
+    <table id="ownersTable" class="table table-striped">
+        <thead>
+        <tr>
+            <th style="width: 150px;">Name</th>
+            <th>DNI</th>
+            <th style="width: 200px;">Address</th>
+            <th>City</th>
+            <th style="width: 120px">Telephone</th>
+            <th>Pets</th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${selections}" var="owner">
+            <tr>
+                <td>
+                    <spring:url value="/owners/{ownerId}" var="ownerUrl">
+                        <spring:param name="ownerId" value="${owner.id}"/>
+                    </spring:url>
+                    <a href="${fn:escapeXml(ownerUrl)}"><c:out value="${owner.firstName} ${owner.lastName}"/></a>
+                </td>
+                 <td>
+                    <c:out value="${owner.dni}"/>
+                </td>
+                <td>
+                    <c:out value="${owner.address}"/>
+                </td>
+                <td>
+                    <c:out value="${owner.city}"/>
+                </td>
+                <td>
+                    <c:out value="${owner.telephone}"/>
+                </td>
+                <td>
+                    <c:forEach var="pet" items="${owner.pets}">
+                        <c:out value="${pet.name} "/>
+                    </c:forEach>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
 </petclinic:layout>
