@@ -64,7 +64,7 @@ class OwnerControllerTests {
         @Test
 	void testProcessCreationFormSuccess() throws Exception {
 		mockMvc.perform(post("/owners/new").param("firstName", "Joe").param("lastName", "Bloggs")
-				.param("address", "123 Caramel Street").param("city", "London").param("telephone", "01316761638").param("dni", "12345678A"))
+				.param("address", "123 Caramel Street").param("city", "London").param("telephone", "123456789").param("dni", "12345678A"))
 				.andExpect(status().is3xxRedirection());
 	}
 
@@ -129,7 +129,7 @@ class OwnerControllerTests {
 	@Test
 	void testProcessUpdateOwnerFormSuccess() throws Exception {
 		mockMvc.perform(post("/owners/{ownerId}/edit", TEST_OWNER_ID).param("firstName", "Joe")
-				.param("lastName", "Bloggs").param("address", "123 Caramel Street").param("city", "London").param("telephone", "01616291589").param("dni", "12345678A"))
+				.param("lastName", "Bloggs").param("address", "123 Caramel Street").param("city", "London").param("telephone", "123456789").param("dni", "12345678A"))
 				.andExpect(status().is3xxRedirection())
 				.andExpect(view().name("redirect:/owners/{ownerId}"));
 	}
