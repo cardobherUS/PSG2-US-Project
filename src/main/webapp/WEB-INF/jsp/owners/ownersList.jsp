@@ -49,4 +49,8 @@
         </c:forEach>
         </tbody>
     </table>
+    
+    
+    <br/>
+    <a class="btn btn-default" href='<spring:url value="/owners/new" htmlEscape="true"/>'>Add Owner</a>
 </petclinic:layout>
