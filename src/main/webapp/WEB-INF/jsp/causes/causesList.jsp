@@ -13,6 +13,7 @@
     <table id="CausesTable" class="table table-striped">
         <thead>
         <tr>
+        	<th>Half?</th>
             <th>Name</th>
             <th>Budget Achieved</th>
             <th>Budget Target</th>
@@ -23,6 +24,18 @@
         <tbody>
         <c:forEach items="${causes}" var="cause">
             <tr>
+            	<td>
+            	
+            	<c:if test="${cause.budgetTarget<cause.getTotalAmountMultipliedBy2()}">
+            		<c:out value=">"/>
+            	</c:if>
+            	<c:if test="${cause.budgetTarget>cause.getTotalAmountMultipliedBy2()}">
+            		<c:out value="<"/>
+            	</c:if>
+            	<c:if test="${cause.budgetTarget==cause.getTotalAmountMultipliedBy2()}">
+            		<c:out value="="/>
+            	</c:if>
+            	</td>
                 <td>
                     <c:out value="${cause.name}"/>
                 </td>
