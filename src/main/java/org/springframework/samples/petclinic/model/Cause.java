@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.support.MutableSortDefinition;
 import org.springframework.beans.support.PropertyComparator;
 
@@ -27,6 +28,7 @@ public class Cause extends NamedEntity {
 	private String	description;
 
 	@NotNull
+	@Range(min=1,max=1000000)
 	@Column(name = "budget_target")
 	private Integer	budgetTarget;
 
@@ -79,7 +81,12 @@ public class Cause extends NamedEntity {
 
 	public Integer getTotalAmount() {
 		return this.donations.stream().mapToInt(Donation::getAmount).sum();
-		
+
+	}
+
+	public Integer getTotalAmountMultipliedBy2() {
+		return this.donations.stream().mapToInt(d -> d.getAmount() * 2).sum();
+
 	}
 
 	public void addDonation(final Donation donation) {

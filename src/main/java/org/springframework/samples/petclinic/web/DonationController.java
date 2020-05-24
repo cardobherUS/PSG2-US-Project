@@ -40,10 +40,11 @@ public class DonationController {
 		
 		Collection<Owner> clients = this.clinicService.findOwnerByLastName("");
 		
+		Cause cause = this.clinicService.findCauseById(causeId);
 		Donation donation = new Donation();
 		donation.setDate(LocalDate.now());
 		
-		model.addAttribute("cause",this.clinicService.findCauseById(causeId));
+		model.addAttribute("cause",cause);
 		model.addAttribute("donation",donation);
 		model.addAttribute(CLIENTS,clients);
 		model.addAttribute(MAX_DONATION,findMaxDonation(causeId));
@@ -56,6 +57,7 @@ public class DonationController {
 		
 		Cause cause = this.clinicService.findCauseById(causeId);
 		donation.setCause(cause);
+		model.put("cause", cause);
 
 		if (result.hasErrors()) {
 			

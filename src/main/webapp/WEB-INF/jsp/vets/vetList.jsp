@@ -39,7 +39,7 @@
 
 	<table class="table-buttons">
 		<tr>
-			<td><a href="<spring:url value="/vets/new" htmlEscape="true" />">Create Vet</a></td>
+			<td><button class="btn btn-default" type="submit"><a href="<spring:url value="/vets/new" htmlEscape="true" />">Create Vet</a></button></td>
 		</tr>
 		<tr>
 			<td><a href="<spring:url value="/vets.xml" htmlEscape="true" />">View as XML</a></td>

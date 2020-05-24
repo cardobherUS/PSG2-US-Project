@@ -137,7 +137,7 @@ public class OwnerController {
 	public String processDelete(@PathVariable("ownerId") int ownerId, ModelMap model) {
 		Owner owner = this.clinicService.findOwnerById(ownerId);
 		this.clinicService.deleteOwner(owner);
-		return "redirect:/owners/find";
+		return "redirect:/owners?lastName=";
 	}
 	
 	/**
